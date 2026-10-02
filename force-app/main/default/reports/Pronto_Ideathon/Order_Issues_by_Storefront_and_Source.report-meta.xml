@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns><field>CASE_NUMBER</field></columns>
+    <columns><field>SUBJECT</field></columns>
+    <columns><field>TYPE</field></columns>
+    <columns><field>REASON</field></columns>
+    <columns><field>STATUS</field></columns>
+    <columns><field>OWNER</field></columns>
+    <columns><field>CREATED_DATE</field></columns>
+    <description>Order issues (customer- and merchant-reported) by storefront and source. Rows = Storefront, columns = Origin.</description>
+    <filter>
+        <criteriaItems>
+            <column>REASON</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Missing items,Order running late,Wrong items delivered,Order arrived cold,Out of Stock,Prep Delay,Handoff Issue</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Case.Storefront__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>ORIGIN</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Case.Storefront__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Order Issues by Storefront and Source</name>
+    <params><name>units</name><value>h</value></params>
+    <params><name>co</name><value>1</value></params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <interval>INTERVAL_LAST90</interval>
+    </timeFrameFilter>
+</Report>
