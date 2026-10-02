@@ -39,6 +39,8 @@ variables:
         description: "How many times this conversation has landed in Ambiguous Question. At 2 the agent logs a Clarification Loop failure."
     clarify_failure_logged: mutable boolean = False
         description: "True once a Clarification Loop failure case has been logged, so it is logged only once per conversation."
+    order_checked: mutable boolean = False
+        description: "True once Get_Order_Status found the customer's order."
     failure_case_number: mutable string = ""
         description: "Case number of the Clarification Loop failure case, to give to the customer."
 
@@ -52,11 +54,13 @@ start_agent agent_router:
     description: "Welcome the user and determine the appropriate subagent based on user input"
     reasoning:
         instructions: ->
-            | Select the best tool to call based on conversation history and user's intent.
+            | You are a router only. Never answer the customer yourself and never ask clarifying questions yourself - always call exactly one transition tool.
+              Select the best tool to call based on conversation history and user's intent.
               Use go_to_order_issue when the customer reports a problem with an order: missing items, wrong items, late or cold food, asks for a refund, or asks about an order's status.
               Use go_to_Storefront_Search when the customer wants to find a restaurant or storefront.
               Use go_to_escalation when the customer asks for a human or live agent.
-              Use go_to_ambiguous_question when the request is too vague to tell what the customer needs.
+              Use go_to_ambiguous_question when the request is too vague to tell what the customer needs (for example "hmm", "help", "something is off", "I don't know"). Always route vague messages there, even if the previous vague message was already routed there.
+              If the customer is in the middle of an order issue (verification, order number, refund confirmation), keep routing their replies to go_to_order_issue.
         actions:
             go_to_order_issue: @utils.transition to @subagent.order_issue
             go_to_escalation: @utils.transition to @subagent.escalation
@@ -70,15 +74,18 @@ subagent order_issue:
     reasoning:
         instructions: ->
             if @variables.VerifiedCustomerId == "":
-                | The customer is not verified yet. Before discussing order details or refunds, ask for the email address on their Pronto account and their last name, then call Verify_Customer.
-                  When Verify_Customer returns verified True, reply by thanking the customer by first name, saying they are verified, and asking for their order number (unless they already gave it). Do not say "hold on".
+                | STAGE 1 - VERIFY. The customer is not verified yet. Do not discuss order details or refunds yet.
+                  If the customer has already given an email address and last name in this conversation, call Verify_Customer now with them. Otherwise ask for the email address on their Pronto account and their last name (one short question).
                   If verification fails, say you could not verify those details and let them try once more. If it fails twice, offer to connect them with a person.
-            else:
-                | The customer is verified as {!@variables.VerifiedFirstName}. Do not ask them to verify again.
-                  If you do not have their order number yet, your reply must thank them by first name, confirm they are verified, and ask for the order number. Do not ask any other question first.
+            if @variables.VerifiedCustomerId != "" and @variables.order_checked == False:
+                | STAGE 2 - ORDER NUMBER. The customer is verified as {!@variables.VerifiedFirstName}. Do not ask them to verify again.
+                  If the customer has already given an order number anywhere in this conversation, call Get_Order_Status now with it and continue with STAGE 3 in the same turn.
+                  Otherwise your reply must be exactly one short message: thank them by first name, say they are verified, and ask for their order number. Do not ask anything else and do not say you are processing anything.
+            if @variables.order_checked == True:
+                | STAGE 3 - RESOLVE. The customer is verified as {!@variables.VerifiedFirstName} and the order has been looked up. Use the issue the customer already described (for example missing fries) - do not ask them to repeat it.
             | You cannot do work between messages, so never say "please hold on" or "one moment". Every reply must either show a result or ask one specific question.
               Follow these steps for a missing, wrong, late or cold item:
-              1. Right after verification succeeds, greet the customer by first name and ask for the order number (unless they already gave it). When you have it, call Get_Order_Status to confirm the order and which restaurant it came from.
+              1. Call Get_Order_Status with the order number to confirm the order and which restaurant it came from.
               2. In the same turn, before replying, call Check_Merchant_Reports with the storefront name from the order. If hasReport is True, tell the customer right away that the restaurant already flagged this problem tonight (use reportSubject), apologize, and move straight to proposing the refund in that same reply without asking for proof.
               3. If there is no merchant report, ask the customer to briefly describe exactly what was missing or wrong, and include that detail in the refund reason. Photo upload is not available in this chat, so never ask for a photo or mention attachments.
               4. Offer a refund for the affected items only. Do not ask the customer what they paid. Estimate it yourself: order total divided by item count, times the number of affected items, rounded to cents (for example 2 missing items on a 6-item $42.60 order is $14.20). State the exact amount and reason, and wait for the customer to explicitly confirm before calling Issue_Refund.
@@ -95,6 +102,7 @@ subagent order_issue:
                 available when @variables.VerifiedCustomerId != ""
                 with orderNumber = ...
                 with contactId = @variables.VerifiedCustomerId
+                set @variables.order_checked = @outputs.success
             Check_Merchant_Reports: @actions.Check_Merchant_Reports
                 available when @variables.VerifiedCustomerId != ""
                 with storefrontName = ...

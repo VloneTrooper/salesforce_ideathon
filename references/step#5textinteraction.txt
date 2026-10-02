@@ -1,0 +1,40 @@
+Pronto Service Agent joined • 11:53 PM
+my fries were missing from my order
+
+Sent • 11:53 PM
+PS
+Hi, I'm Pronto's Service Assistant. How can I help you today?
+
+Pronto Service Agent • 11:53 PM
+my fries were missing from my order
+
+Sent • 11:53 PM
+I understand you are missing fries from your order. To help you, I need to verify your account. Please provide the email address on your Pronto account and your last name.
+
+PS
+You mentioned your fries were missing from your order. I am already working on resolving this for you. Could you please confirm the email address on your Pronto account and your last name so I can verify your order and help you further?
+
+Pronto Service Agent • 11:53 PM
+alex.morgan@example.com, Morgan
+
+Sent • 11:53 PM
+PS
+Thank you, Alex Morgan. I am processing your report about the missing fries from your order. Once I have an update or resolution, I will let you know. Is there anything else about your order that I can assist with right now?
+
+Pronto Service Agent • 11:53 PM
+10301, both fries were missing
+
+Sent • 11:53 PM
+PS
+Alex, thanks for confirming your details and order number. I checked your order from Urban Table Downtown, and the restaurant already reported being out of fries tonight. You ordered 2 large fries, and both were missing.
+
+I can offer a refund for those 2 fries. Based on your order total ($42.60) and item count (6 items), the refund for 2 missing items is $14.20. Would you like me to process this $14.20 refund for your missing fries right now?
+
+Pronto Service Agent • 11:53 PM
+yes
+
+Sent • 11:53 PM
+PS
+Your $14.20 refund for the missing fries from order 10301 at Urban Table Downtown has been processed. Your refund reference number is REF-0003.
+
+You should see the refund back to your original payment method soon. If you have any other issues or questions about your order, let me know—I'm here to help!
