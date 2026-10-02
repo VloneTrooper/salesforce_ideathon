@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <description>Phase 1. When an email from a merchant or courier becomes a Case (Origin = Merchant Report), copy the sender Contact Storefront onto the Case, set Type = Merchant Operations, and classify Reason from subject keywords: out of / 86 = Out of Stock, late / delay = Prep Delay, anything else = Handoff Issue.</description>
+    <environments>Default</environments>
+    <label>Merchant Report Case Enrichment</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+    <formulas>
+        <name>subjectLower</name>
+        <dataType>String</dataType>
+        <expression>LOWER({!$Record.Subject})</expression>
+    </formulas>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Has_Contact</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Origin</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Merchant Report</stringValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <decisions>
+        <name>Has_Contact</name>
+        <label>Has Contact</label>
+        <locationX>182</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>Classify_Issue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No contact</defaultConnectorLabel>
+        <rules>
+            <name>Contact_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ContactId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Sender_Contact</targetReference>
+            </connector>
+            <label>Contact found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Classify_Issue</name>
+        <label>Classify Issue</label>
+        <locationX>182</locationX>
+        <locationY>400</locationY>
+        <defaultConnector>
+            <targetReference>Set_Handoff_Issue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <rules>
+            <name>Out_Of_Stock</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>subjectLower</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>out of</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>subjectLower</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>86</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Out_Of_Stock</targetReference>
+            </connector>
+            <label>Out of stock</label>
+        </rules>
+        <rules>
+            <name>Prep_Delay</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>subjectLower</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>late</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>subjectLower</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>delay</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Prep_Delay</targetReference>
+            </connector>
+            <label>Prep delay</label>
+        </rules>
+    </decisions>
+    <assignments>
+        <name>Copy_Storefront</name>
+        <label>Copy Storefront</label>
+        <locationX>50</locationX>
+        <locationY>300</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Storefront__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Sender_Contact.Storefront__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Classify_Issue</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Handoff_Issue</name>
+        <label>Set Handoff Issue</label>
+        <locationX>314</locationX>
+        <locationY>500</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Handoff Issue</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Merchant Operations</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Out_Of_Stock</name>
+        <label>Set Out of Stock</label>
+        <locationX>50</locationX>
+        <locationY>500</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Out of Stock</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Merchant Operations</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Prep_Delay</name>
+        <label>Set Prep Delay</label>
+        <locationX>182</locationX>
+        <locationY>500</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Prep Delay</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Merchant Operations</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <recordLookups>
+        <name>Get_Sender_Contact</name>
+        <label>Get Sender Contact</label>
+        <locationX>50</locationX>
+        <locationY>200</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Copy_Storefront</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ContactId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Storefront__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+</Flow>
