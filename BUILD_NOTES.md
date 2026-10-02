@@ -8,7 +8,7 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 | Phase | Status | Human step pending |
 |---|---|---|
 | 0 Data model | ✅ Deployed | — |
-| 1 Merchant & Courier channel | 🟡 Built + flow tested | Verify routing address in Prontosupport2@gmail.com; set up Gmail forwarding; send test email (see Phase 1) |
+| 1 Merchant & Courier channel | 🟡 Email channel built; ✅ **web form** built + tested | Email: verify routing address + Gmail forwarding. Form: open it in a browser once and submit |
 | 2 Agent failure handling | 🟡 Built, tested in live preview, published as **v2 (inactive)** | Valen activates v2; confirm bell + email for Case 00001041 |
 | Ex. 3 Verification + refunds | 🟡 Built, tested in live preview (in v2) | Activate v2 |
 | 3 Report & dashboard | 🟡 Built (4 reports + dashboard), sample data seeded | Check filters in the UI; approve insight sentence; export .xlsx + PDF |
@@ -19,7 +19,11 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 
 ## Key facts
 - Org: `hackathon-org` (Developer Edition, org id 00Dfj00000fQ9T5EAK).
-- Support lead: **Valen Cole** (username `v413nc@gmail.com`).
+- Support lead: **Valen Cole** (username `v413nc@gmail.com`). Alerts land in Gmail spam — mark Not spam.
+- Team users (all System Administrator + Service Cloud User + `Pronto_Ideathon_Access` + members of both queues):
+  Valen Cole, **Ethan Skinner** (upgraded from Force.com Free on Oct 1), **Pronto Merchant Ops** (username
+  `prontosupport2@pronto-ideathon.demo`, email Prontosupport2@gmail.com — the inbox owner; password-setup email sent there).
+  Script: `scripts/apex/setup_team_users.apex`.
 - Team inbox for merchants/couriers: **Prontosupport2@gmail.com**.
 - Merchant account: **Urban Eats Collective** (`001fj00001pGnvjAAC`); demo storefront **Urban Table Downtown**.
 - Agent runs as `agentforce_service_agent.wzhzea842vrr@example.com` (EinsteinServiceAgent User).
@@ -220,7 +224,8 @@ Story: **"One bad night at Urban Table Downtown."** Run it twice before presenti
 
 **Before you present (≈15 min before):**
 1. Agent v2 is **Active** (Agentforce Builder).
-2. From ethanskinner216@gmail.com send to Prontosupport2@gmail.com: subject **"Out of fries tonight"**.
+2. Open `merchant-report-form/index.html`, choose **Urban Table Downtown**, message **"Out of fries tonight"**, send
+   (or email Prontosupport2@gmail.com from a merchant contact address).
    Confirm a new Case in **Merchant Ops Queue** with Storefront = Urban Table Downtown, Reason = Out of Stock.
    (The bonus only fires if this case is **open** and **< 24h old**.) Screenshot it as a backup.
 3. Valen logged in, bell icon visible, Omni-Channel set to Available.
@@ -241,7 +246,6 @@ subject-only and case-insensitive; the agent does not read photos; sample data i
 everything is in git (github.com/VloneTrooper/salesforce_ideathon), one commit per phase.
 
 ### Cleanup before submission
-- Delete test Case **00001041** once the bell/email check is done.
 - Delete the Gmail-forwarding confirmation Case (from forwarding-noreply@google.com) in Merchant Ops Queue.
 - Keep the `[Sample data]` cases — the dashboard needs them.
 
@@ -252,10 +256,33 @@ everything is in git (github.com/VloneTrooper/salesforce_ideathon), one commit p
 - **"Check Merchant Reports" flow error emails (8:28pm Oct 1)**: from flow version 1, before the switch to system
   mode — the agent user cannot read `Storefront__c`. Fixed in version 2 (system mode); later live tests passed.
   Ignore those emails.
-- **Support-lead alert not yet confirmed received.** Flow `Agent_Failure_Alert_Notification` is active and
-  deliverability is "All email", but Valen saw no email. Likely cause: the flow's email is sent *from the user who
-  created the Case* — `noreply@example.com` (agent user) or `v413nc@gmail.com` (sent by Salesforce servers → fails
-  Gmail's DMARC) — so Gmail junks/drops it. Test Cases 00001041 and 00001116 (+ one direct bell notification) were
-  sent. Bell notifications show in the **internal Salesforce UI (Lightning), not the Experience site**, logged in as
-  **Valen Cole** (username v413nc@gmail.com). `/connect/notifications` REST returns empty, so can't verify from CLI.
-  Planned fix if email is missing: send from a verified Org-Wide Email Address.
+- **Support-lead alert: ✅ confirmed.** Bell shows in Lightning when logged in as Valen Cole; emails arrive but land in
+  **Gmail spam** (Salesforce sends them as a gmail.com / example.com address, which fails Gmail's sender checks).
+  Mark them "Not spam" before the demo. Test Cases 00001041 / 00001116 deleted.
+
+---
+
+## Phase 1b — Merchant Report web form ✅ built + tested (added Oct 1, ~11:30pm)
+
+Simpler demo path than email: **`merchant-report-form/index.html`** — open it by double-clicking (no server).
+Merchant enters **their own email**, picks a **storefront**, types **what's happening** (quick-start chips for
+out of stock / running late / courier). No merchant account or login needed.
+
+How it works: the page POSTs to Salesforce **Web-to-Case** (`webto.salesforce.com`, org 00Dfj00000fQ9T5) with
+Origin = `Merchant Report`, Subject = first line of the message, Description = full message, and
+`Case.Reported_Storefront__c` (field id `00Nfj00005G2v9h`) = the chosen storefront.
+- **Case assignment rule** "Standard" got a new first entry: Origin = Merchant Report → **Merchant Ops Queue**
+  (Web-to-Case assigns the owner after flows run, so the flow alone couldn't route it).
+- **Flow `Merchant_Report_Case_Enrichment`** now also: matches Reported Storefront by name and uses it (beats the
+  Contact's storefront), and sets owner = Merchant Ops Queue (covers email too).
+- If the email matches a Contact, Web-to-Case links Contact + Account; unknown emails still work (stored in
+  `SuppliedEmail`, storefront still set from the dropdown).
+
+Tested via the same POST with curl: known sender (Ethan) + "running late" + Fusion Bites Oak Lawn → Prep Delay,
+Fusion Bites Oak Lawn, Contact Ethan Skinner, Account Urban Eats Collective ✅; unknown sender + "out of buns" +
+Harvest Grill → Out of Stock, Harvest Grill, Merchant Ops Queue ✅. Test cases deleted.
+Not yet clicked through in a real browser (the page uses `fetch(..., {mode: "no-cors"})`, so it can't read
+Salesforce's reply and won't show a case number — it shows "Report sent").
+
+**Demo:** pick **Urban Table Downtown**, type **"Out of fries tonight"**, send → Case appears in Merchant Ops Queue
+within a few seconds → then run the customer chat (bonus fires because an open Merchant Report exists < 24h).

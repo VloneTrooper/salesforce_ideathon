@@ -1,0 +1,25 @@
+The Pronto Service Agent could not resolve a conversation and logged a failure case.
+
+Case: 00001041
+Failure type: Action Error
+Priority: High
+
+Summary:
+TEST from build script - refund action returned success False
+
+Open the case: https://orgfarm-db2402fd58-dev-ed.develop.my.salesforce.com/500fj00002aBEgEAAW
+
+
+AND
+
+
+The Pronto Service Agent could not resolve a conversation and logged a failure case.
+
+Case: 00001116
+Failure type: Clarification Loop
+Priority: Medium
+
+Summary:
+TEST alert check #2 - safe to delete
+
+Open the case: https://orgfarm-db2402fd58-dev-ed.develop.my.salesforce.com/500fj00002aC4dBAAS

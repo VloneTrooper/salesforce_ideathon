@@ -14,7 +14,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Classify_Issue</targetReference>
+            <targetReference>Has_Reported_Storefront</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -77,13 +77,45 @@
             </value>
         </assignmentItems>
     </assignments>
+    <assignments>
+        <name>Use_Reported_Storefront</name>
+        <label>Use Reported Storefront</label>
+        <locationX>50</locationX>
+        <locationY>360</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Storefront__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Reported_Storefront.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Merchant_Ops_Queue</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Route_To_Merchant_Ops</name>
+        <label>Route To Merchant Ops</label>
+        <locationX>182</locationX>
+        <locationY>380</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Merchant_Ops_Queue.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Classify_Issue</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Has_Contact</name>
         <label>Has Contact</label>
         <locationX>182</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>Classify_Issue</targetReference>
+            <targetReference>Has_Reported_Storefront</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No contact</defaultConnectorLabel>
         <rules>
@@ -156,7 +188,57 @@
             <label>Prep delay</label>
         </rules>
     </decisions>
-    <description>Phase 1. When an email from a merchant or courier becomes a Case (Origin = Merchant Report), copy the sender Contact Storefront onto the Case, set Type = Merchant Operations, and classify Reason from subject keywords: out of / 86 = Out of Stock, late / delay = Prep Delay, anything else = Handoff Issue.</description>
+    <decisions>
+        <name>Has_Reported_Storefront</name>
+        <label>Has Reported Storefront</label>
+        <locationX>182</locationX>
+        <locationY>320</locationY>
+        <defaultConnector>
+            <targetReference>Get_Merchant_Ops_Queue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Reported_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Reported_Storefront__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Reported_Storefront</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Reported_Storefront_Found</name>
+        <label>Reported Storefront Found</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Get_Merchant_Ops_Queue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Found_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Reported_Storefront.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Use_Reported_Storefront</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Phase 1. Also handles the Merchant Report web form: if Reported Storefront (text) matches a Storefront by name, it wins over the Contact storefront. Always routes to Merchant Ops Queue. When an email from a merchant or courier becomes a Case (Origin = Merchant Report), copy the sender Contact Storefront onto the Case, set Type = Merchant Operations, and classify Reason from subject keywords: out of / 86 = Out of Stock, late / delay = Prep Delay, anything else = Handoff Issue.</description>
     <environments>Default</environments>
     <formulas>
         <name>subjectLower</name>
@@ -186,6 +268,57 @@
         <object>Contact</object>
         <queriedFields>Id</queriedFields>
         <queriedFields>Storefront__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Reported_Storefront</name>
+        <label>Get Reported Storefront</label>
+        <locationX>50</locationX>
+        <locationY>340</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Reported_Storefront_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Reported_Storefront__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Storefront__c</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Merchant_Ops_Queue</name>
+        <label>Get Merchant Ops Queue</label>
+        <locationX>182</locationX>
+        <locationY>370</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Route_To_Merchant_Ops</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Merchant_Ops_Queue</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Queue</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
