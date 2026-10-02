@@ -7,9 +7,6 @@
         <locationY>400</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
-        <connector>
-            <targetReference>Send_Email_To_Lead</targetReference>
-        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -42,39 +39,6 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <actionCalls>
-        <name>Send_Email_To_Lead</name>
-        <label>Send Email To Lead</label>
-        <locationX>50</locationX>
-        <locationY>500</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddresses</name>
-            <value>
-                <elementReference>Get_Support_Lead.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <elementReference>notifTitle</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>emailBody</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderType</name>
-            <value>
-                <stringValue>DefaultWorkflowUser</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
     <apiVersion>67.0</apiVersion>
     <assignments>
         <name>Add_Recipient</name>
@@ -99,7 +63,7 @@
             <stringValue>v413nc@gmail.com</stringValue>
         </value>
     </constants>
-    <description>Phase 2. When a Case is created with Origin = Agent (by Log Agent Failure), send the support lead a bell notification (Custom Notification Agent Failure Alert, target = the Case) and an email. Support lead is set by the supportLeadUsername constant (Valen Cole).</description>
+    <description>Phase 2. When a Case is created with Origin = Agent (by Log Agent Failure), send the support lead a bell notification (Custom Notification Agent Failure Alert, target = the Case). Email was removed on purpose: Gmail drops Salesforce mail sent as a gmail.com address. Support lead is set by the supportLeadUsername constant (Valen Cole).</description>
     <environments>Default</environments>
     <formulas>
         <name>notifTitle</name>
@@ -110,11 +74,6 @@
         <name>notifBody</name>
         <dataType>String</dataType>
         <expression>&quot;Case &quot; &amp; {!$Record.CaseNumber} &amp; &quot;: &quot; &amp; LEFT({!$Record.Description}, 500)</expression>
-    </formulas>
-    <formulas>
-        <name>caseUrl</name>
-        <dataType>String</dataType>
-        <expression>LEFT({!$Api.Partner_Server_URL_600}, FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_600})) &amp; {!$Record.Id}</expression>
     </formulas>
     <label>Agent Failure Alert Notification</label>
     <processType>AutoLaunchedFlow</processType>
@@ -182,20 +141,6 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
-    <textTemplates>
-        <name>emailBody</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>The Pronto Service Agent could not resolve a conversation and logged a failure case.
-
-Case: {!$Record.CaseNumber}
-Failure type: {!$Record.Failure_Type__c}
-Priority: {!$Record.Priority}
-
-Summary:
-{!$Record.Description}
-
-Open the case: {!caseUrl}</text>
-    </textTemplates>
     <variables>
         <name>recipientIds</name>
         <dataType>String</dataType>

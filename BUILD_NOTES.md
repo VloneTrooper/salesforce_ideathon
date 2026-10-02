@@ -363,3 +363,14 @@ in the repo are **partial** profiles (only the app/tab/class settings) — deplo
   saved, retrieve it with `sf project retrieve start -m FlexiPage` to keep it in git.
 - **Gmail filter (Valen and Ethan):** Gmail → search box → "Show search options" → From: `v413nc@gmail.com`, Has the words:
   `"Agent failure" OR "Pronto received your report"` → Create filter → ✅ Never send it to Spam → Create filter.
+
+### Oct 2 (~2:15am) — bell only; chat reply works
+- **Emails removed by decision (Valen): the bell is the alert.** `Agent_Failure_Alert_Notification` now only sends the bell
+  notification (title "Case 000xxxx: Agent failure, <type> (<priority>)", click opens the Case). Auto-response rule
+  "Pronto Merchant Reports" deactivated; `Merchant_Site_Report_Confirmation` flow set to Draft. Only the local HTML form
+  (Web-to-Case) still triggers Salesforce's default Web-to-Case receipt.
+- **Chat reply works:** Valen added the Enhanced Conversation component in Lightning App Builder; page retrieved into git as
+  `flexipages/Messaging_Session_Record_Page` (org default for Messaging Session).
+- **Closing:** merchant reports and agent-failure records are Cases → Status = Closed. Live chats are Messaging Sessions →
+  end them with **End Chat** in the conversation window (no Status to set); the escalation case stays open until closed.
+- Clarification Loop alerts: only 2 cases exist (00001122, 00001125), one per deliberate step-E test — not over-firing.
