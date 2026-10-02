@@ -1,0 +1,106 @@
+An Error Occurred with Your "Check Merchant Reports" Flow
+
+You’ve received this email because an error occurred while your "Check Merchant Reports" flow was running. Debug this flow in Flow Builder.
+
+Error element Get_Storefront (FlowRecordLookup).
+This error occurred when the flow tried to look up records: SELECT Id, Name FROM Storefront__c WHERE ((Name LIKE ^ ERROR at Row:1:Column:22 sObject type 'Storefront__c' is not supported. If you are attempting to use a custom object, be sure to append the '__c' after the entity name. Please reference your WSDL or the describe call for the appropriate names.. You can look up ExceptionCode values in the SOAP API Developer Guide.
+
+Open Flow
+
+
+
+Flow Error Details
+
+Flow Details
+
+Flow API Name: Check_Merchant_Reports
+Type: Autolaunched Flow
+Version: 1
+Activation Status: Active
+Org: EPIC OrgFarm (00Dfj00000fQ9T5)
+
+
+Flow Interview Details
+
+Interview Label:
+Interview GUID: 4011af64e838ec581d777bbe70e1a0f714e07b-70c2
+Current User: EinsteinServiceAgent User (005fj00000NJgsm)
+Start time: 10/1/2026, 8:28 PM
+Duration: 0 seconds
+
+How the Interview Started
+EinsteinServiceAgent User (005fj00000NJgsm) started the flow interview.
+API Version for Running the Flow: 67
+Some of this flow's variables were set when the interview started.
+storefrontName = Urban Table Downtown
+DECISION: Has Name
+Outcome executed: Name_Yes
+Outcome conditions:
+{!storefrontName} (Urban Table Downtown) Is Blank false
+All conditions must be true (AND)
+
+GET RECORDS: Get Storefront
+Find all Storefront__c records where:
+Name Contains {!storefrontName} (Urban Table Downtown)
+Sort records by: Name (Descending)
+Store the values of these fields in Get_Storefront: Id, Name
+Result
+Failed to find records.
+
+Error Occurred: This error occurred when the flow tried to look up records: SELECT Id, Name FROM Storefront__c WHERE ((Name LIKE ^ ERROR at Row:1:Column:22 sObject type 'Storefront__c' is not supported. If you are attempting to use a custom object, be sure to append the '__c' after the entity name. Please reference your WSDL or the describe call for the appropriate names.. You can look up ExceptionCode values in the SOAP API Developer Guide.
+
+Salesforce Error ID: 1938694453-3468036 (-2144135148)
+
+
+FlowApplication <info@salesforce.com>
+9:28 PM (16 minutes ago)
+to me
+
+Salesforce logo
+An Error Occurred with Your "Check Merchant Reports" Flow
+
+You’ve received this email because an error occurred while your "Check Merchant Reports" flow was running. Debug this flow in Flow Builder.
+
+Error element Get_Storefront (FlowRecordLookup).
+This error occurred when the flow tried to look up records: SELECT Id, Name FROM Storefront__c WHERE ((Name LIKE ^ ERROR at Row:1:Column:22 sObject type 'Storefront__c' is not supported. If you are attempting to use a custom object, be sure to append the '__c' after the entity name. Please reference your WSDL or the describe call for the appropriate names.. You can look up ExceptionCode values in the SOAP API Developer Guide.
+
+Open Flow
+
+
+
+Flow Error Details
+
+Flow Details
+
+Flow API Name: Check_Merchant_Reports
+Type: Autolaunched Flow
+Version: 1
+Activation Status: Active
+Org: EPIC OrgFarm (00Dfj00000fQ9T5)
+
+Flow Interview Details
+
+Interview Label:
+Interview GUID: 5977d6e8dd2e9e15ce974c1c2c451a0fa825c96-77ea
+Current User: EinsteinServiceAgent User (005fj00000NJgsm)
+Start time: 10/1/2026, 8:28 PM
+Duration: 0 seconds
+
+How the Interview Started
+EinsteinServiceAgent User (005fj00000NJgsm) started the flow interview.
+API Version for Running the Flow: 67
+Some of this flow's variables were set when the interview started.
+storefrontName = Urban Table Downtown
+DECISION: Has Name
+Outcome executed: Name_Yes
+Outcome conditions:
+{!storefrontName} (Urban Table Downtown) Is Blank false
+All conditions must be true (AND)
+GET RECORDS: Get Storefront
+Find all Storefront__c records where:
+Name Contains {!storefrontName} (Urban Table Downtown)
+Sort records by: Name (Descending)
+Store the values of these fields in Get_Storefront: Id, Name
+Result
+Failed to find records.
+Error Occurred: This error occurred when the flow tried to look up records: SELECT Id, Name FROM Storefront__c WHERE ((Name LIKE ^ ERROR at Row:1:Column:22 sObject type 'Storefront__c' is not supported. If you are attempting to use a custom object, be sure to append the '__c' after the entity name. Please reference your WSDL or the describe call for the appropriate names.. You can look up ExceptionCode values in the SOAP API Developer Guide.

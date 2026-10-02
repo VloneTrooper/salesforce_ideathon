@@ -244,3 +244,18 @@ everything is in git (github.com/VloneTrooper/salesforce_ideathon), one commit p
 - Delete test Case **00001041** once the bell/email check is done.
 - Delete the Gmail-forwarding confirmation Case (from forwarding-noreply@google.com) in Merchant Ops Queue.
 - Keep the `[Sample data]` cases — the dashboard needs them.
+
+---
+
+## Open issue log
+
+- **"Check Merchant Reports" flow error emails (8:28pm Oct 1)**: from flow version 1, before the switch to system
+  mode — the agent user cannot read `Storefront__c`. Fixed in version 2 (system mode); later live tests passed.
+  Ignore those emails.
+- **Support-lead alert not yet confirmed received.** Flow `Agent_Failure_Alert_Notification` is active and
+  deliverability is "All email", but Valen saw no email. Likely cause: the flow's email is sent *from the user who
+  created the Case* — `noreply@example.com` (agent user) or `v413nc@gmail.com` (sent by Salesforce servers → fails
+  Gmail's DMARC) — so Gmail junks/drops it. Test Cases 00001041 and 00001116 (+ one direct bell notification) were
+  sent. Bell notifications show in the **internal Salesforce UI (Lightning), not the Experience site**, logged in as
+  **Valen Cole** (username v413nc@gmail.com). `/connect/notifications` REST returns empty, so can't verify from CLI.
+  Planned fix if email is missing: send from a verified Org-Wide Email Address.
