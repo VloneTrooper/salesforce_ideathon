@@ -1,34 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
-    <description>Phase 1. When an email from a merchant or courier becomes a Case (Origin = Merchant Report), copy the sender Contact Storefront onto the Case, set Type = Merchant Operations, and classify Reason from subject keywords: out of / 86 = Out of Stock, late / delay = Prep Delay, anything else = Handoff Issue.</description>
-    <environments>Default</environments>
-    <label>Merchant Report Case Enrichment</label>
-    <processType>AutoLaunchedFlow</processType>
-    <status>Active</status>
-    <formulas>
-        <name>subjectLower</name>
-        <dataType>String</dataType>
-        <expression>LOWER({!$Record.Subject})</expression>
-    </formulas>
-    <start>
+    <assignments>
+        <name>Copy_Storefront</name>
+        <label>Copy Storefront</label>
         <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Has_Contact</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Origin</field>
-            <operator>EqualTo</operator>
+        <locationY>300</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Storefront__c</assignToReference>
+            <operator>Assign</operator>
             <value>
-                <stringValue>Merchant Report</stringValue>
+                <elementReference>Get_Sender_Contact.Storefront__c</elementReference>
             </value>
-        </filters>
-        <object>Case</object>
-        <recordTriggerType>Create</recordTriggerType>
-        <triggerType>RecordBeforeSave</triggerType>
-    </start>
+        </assignmentItems>
+        <connector>
+            <targetReference>Classify_Issue</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Handoff_Issue</name>
+        <label>Set Handoff Issue</label>
+        <locationX>314</locationX>
+        <locationY>500</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Handoff Issue</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Merchant Operations</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Out_Of_Stock</name>
+        <label>Set Out of Stock</label>
+        <locationX>50</locationX>
+        <locationY>500</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Out of Stock</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Merchant Operations</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Prep_Delay</name>
+        <label>Set Prep Delay</label>
+        <locationX>182</locationX>
+        <locationY>500</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Prep Delay</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Merchant Operations</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
     <decisions>
         <name>Has_Contact</name>
         <label>Has Contact</label>
@@ -108,82 +156,15 @@
             <label>Prep delay</label>
         </rules>
     </decisions>
-    <assignments>
-        <name>Copy_Storefront</name>
-        <label>Copy Storefront</label>
-        <locationX>50</locationX>
-        <locationY>300</locationY>
-        <assignmentItems>
-            <assignToReference>$Record.Storefront__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Get_Sender_Contact.Storefront__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Classify_Issue</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Set_Handoff_Issue</name>
-        <label>Set Handoff Issue</label>
-        <locationX>314</locationX>
-        <locationY>500</locationY>
-        <assignmentItems>
-            <assignToReference>$Record.Reason</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Handoff Issue</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>$Record.Type</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Merchant Operations</stringValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <assignments>
-        <name>Set_Out_Of_Stock</name>
-        <label>Set Out of Stock</label>
-        <locationX>50</locationX>
-        <locationY>500</locationY>
-        <assignmentItems>
-            <assignToReference>$Record.Reason</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Out of Stock</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>$Record.Type</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Merchant Operations</stringValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <assignments>
-        <name>Set_Prep_Delay</name>
-        <label>Set Prep Delay</label>
-        <locationX>182</locationX>
-        <locationY>500</locationY>
-        <assignmentItems>
-            <assignToReference>$Record.Reason</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Prep Delay</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>$Record.Type</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Merchant Operations</stringValue>
-            </value>
-        </assignmentItems>
-    </assignments>
+    <description>Phase 1. When an email from a merchant or courier becomes a Case (Origin = Merchant Report), copy the sender Contact Storefront onto the Case, set Type = Merchant Operations, and classify Reason from subject keywords: out of / 86 = Out of Stock, late / delay = Prep Delay, anything else = Handoff Issue.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>subjectLower</name>
+        <dataType>String</dataType>
+        <expression>LOWER({!$Record.Subject})</expression>
+    </formulas>
+    <label>Merchant Report Case Enrichment</label>
+    <processType>AutoLaunchedFlow</processType>
     <recordLookups>
         <name>Get_Sender_Contact</name>
         <label>Get Sender Contact</label>
@@ -207,4 +188,23 @@
         <queriedFields>Storefront__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Has_Contact</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Origin</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Merchant Report</stringValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
 </Flow>

@@ -87,6 +87,9 @@ public with sharing class OrderStatusCardAction {
             Date.today().addDays(-4), 'Delivered Sat 6:12 PM', '1x Buddha Bowl, 1x Kombucha', 2, 21.40));
         samples.put('10254', buildOrder('10254', 'Nonna\'s Kitchen', 'Preparing', 'preparing',
             Date.today(), 'Est. 8:20 PM today', '1x Lasagna, 1x Caprese, 2x Tiramisu', 4, 63.10));
+        // Ideathon demo order: "one bad night at Urban Table Downtown" (fries missing).
+        samples.put('10301', buildOrder('10301', 'Urban Table Downtown', 'Delivered', 'delivered',
+            Date.today(), 'Delivered 7:48 PM', '2x Smash Burger, 2x Large Fries, 2x Lemonade', 6, 42.60));
 
         if (samples.containsKey(orderNumber)) {
             return samples.get(orderNumber);

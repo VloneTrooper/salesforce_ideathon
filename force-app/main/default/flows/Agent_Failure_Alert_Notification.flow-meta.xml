@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Bell_Notification</name>
+        <label>Send Bell Notification</label>
+        <locationX>50</locationX>
+        <locationY>400</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>Send_Email_To_Lead</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>Get_Notification_Type.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>recipientIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <elementReference>notifTitle</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>notifBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_To_Lead</name>
+        <label>Send Email To Lead</label>
+        <locationX>50</locationX>
+        <locationY>500</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Get_Support_Lead.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>notifTitle</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>emailBody</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>67.0</apiVersion>
+    <assignments>
+        <name>Add_Recipient</name>
+        <label>Add Recipient</label>
+        <locationX>50</locationX>
+        <locationY>300</locationY>
+        <assignmentItems>
+            <assignToReference>recipientIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Get_Support_Lead.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Bell_Notification</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>supportLeadUsername</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>v413nc@gmail.com</stringValue>
+        </value>
+    </constants>
+    <description>Phase 2. When a Case is created with Origin = Agent (by Log Agent Failure), send the support lead a bell notification (Custom Notification Agent Failure Alert, target = the Case) and an email. Support lead is set by the supportLeadUsername constant (Valen Cole).</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>notifTitle</name>
+        <dataType>String</dataType>
+        <expression>&quot;Agent failure: &quot; &amp; TEXT({!$Record.Failure_Type__c}) &amp; &quot; (&quot; &amp; TEXT({!$Record.Priority}) &amp; &quot;)&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>notifBody</name>
+        <dataType>String</dataType>
+        <expression>&quot;Case &quot; &amp; {!$Record.CaseNumber} &amp; &quot;: &quot; &amp; LEFT({!$Record.Description}, 500)</expression>
+    </formulas>
+    <formulas>
+        <name>caseUrl</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_600}, FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_600})) &amp; {!$Record.Id}</expression>
+    </formulas>
+    <label>Agent Failure Alert Notification</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Support_Lead</name>
+        <label>Get Support Lead</label>
+        <locationX>50</locationX>
+        <locationY>100</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Notification_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>supportLeadUsername</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Email</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Notification_Type</name>
+        <label>Get Notification Type</label>
+        <locationX>50</locationX>
+        <locationY>200</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Recipient</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Agent_Failure_Alert</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Support_Lead</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Origin</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Agent</stringValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>emailBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>The Pronto Service Agent could not resolve a conversation and logged a failure case.
+
+Case: {!$Record.CaseNumber}
+Failure type: {!$Record.Failure_Type__c}
+Priority: {!$Record.Priority}
+
+Summary:
+{!$Record.Description}
+
+Open the case: {!caseUrl}</text>
+    </textTemplates>
+    <variables>
+        <name>recipientIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
