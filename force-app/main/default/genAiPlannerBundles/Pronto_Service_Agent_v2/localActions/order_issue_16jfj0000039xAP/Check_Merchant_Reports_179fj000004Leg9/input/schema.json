@@ -1,0 +1,14 @@
+{
+  "required" : [ "storefrontName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "storefrontName" : {
+      "title" : "Storefront Name",
+      "description" : "Full restaurant/storefront name from the order, for example Urban Table Downtown.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

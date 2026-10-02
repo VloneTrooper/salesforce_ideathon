@@ -9,13 +9,13 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 |---|---|---|
 | 0 Data model | ✅ Deployed | — |
 | 1 Merchant & Courier channel | 🟡 Built + flow tested | Verify routing address in Prontosupport2@gmail.com; set up Gmail forwarding; send test email (see Phase 1) |
-| 2 Agent failure handling | ⏳ Not started | Valen activates new agent version; confirm bell + email |
-| Ex. 3 Verification + refunds | ⏳ Not started | (part of agent activation) |
+| 2 Agent failure handling | 🟡 Built, tested in live preview, published as **v2 (inactive)** | Valen activates v2; confirm bell + email for Case 00001041 |
+| Ex. 3 Verification + refunds | 🟡 Built, tested in live preview (in v2) | Activate v2 |
 | 3 Report & dashboard | ⏳ Not started | Approve insight sentence; export .xlsx + PDF |
 | 4 Photo evidence | ⏳ Not started | TBD |
-| 5 Bonus merchant-aware agent | ⏳ Not started | Rehearse demo |
+| 5 Bonus merchant-aware agent | 🟡 Built early, tested in live preview (in v2) | Rehearse email → chat sequence |
 
-**Next up:** Exercise 3 + Phase 2 (agent verification, order issues, failure logging).
+**Next up:** Phase 4 (photo attachments) investigation, then Phase 3 (seed data, reports, dashboard).
 
 ## Key facts
 - Org: `hackathon-org` (Developer Edition, org id 00Dfj00000fQ9T5EAK).
@@ -93,3 +93,63 @@ Handoff Issue, no storefront ✅.
 
 Pitch line: customer chat reacts to problems; this channel hears about them first, from the people
 who cause or see them, with no new app for merchants.
+
+---
+
+## Exercise 3 + Phase 2 + Phase 5 — Pronto Service Agent v2 🟡 published, awaiting activation
+
+All agent changes are in one Agent Script file:
+`force-app/main/default/aiAuthoringBundles/Pronto_Service_Agent/Pronto_Service_Agent.agent`.
+Published 2026-10-01 ~10:35pm as **BotVersion v2 (Inactive)**. v1 is still the active version.
+**Valen activates v2** in Agentforce Builder (Pronto Service Agent → version dropdown → v2 → Activate).
+
+### What changed in the agent
+| Piece | How |
+|---|---|
+| **New subagent `order_issue`** (Exercise 3) | Router sends missing / wrong / late / cold items, refunds and order status here. |
+| Verification | `Verify_Customer` → flow `Verify_Pronto_Customer` (email AND last name must match a Contact). Sets `VerifiedCustomerId` + `VerifiedFirstName`. Order lookup, merchant check and refund are **hidden** (`available when`) until verified. |
+| Order lookup | `Get_Order_Status` → Apex `OrderStatusCardAction` (sample orders; added **10301 = Urban Table Downtown, 2x Smash Burger, 2x Large Fries, 2x Lemonade, $42.60**). |
+| Refund | `Issue_Refund` → Apex `IssueRefundReceiptAction` (creates `Refund__c`, status Approved). Agent proposes amount = total ÷ items × affected items and waits for explicit yes. Wallet-pass callout fails harmlessly (no credential) — refund still succeeds. |
+| **Bonus: merchant-aware** (Phase 5) | Before resolving, agent calls `Check_Merchant_Reports` → flow of same name (open Merchant Report case for that storefront in the last 24h). If found, it tells the customer the restaurant already flagged it and skips asking for proof. |
+| Photo prompt (Phase 4 text) | If no merchant report, agent invites the customer to attach a photo with the paperclip; told never to claim it can see photos. |
+| **Failure: Clarification Loop** | `clarify_count` (number) +1 in `before_reasoning` of `ambiguous_question`. At 2, `Log_Agent_Failure` becomes available with failureType fixed to "Clarification Loop"; output case number saved to `failure_case_number`; logged once per conversation (`clarify_failure_logged`). |
+| **Failure: Escalation Failed** | `escalation` subagent: if `@utils.escalate` fails, call Log_Agent_Failure (High). Note: Preview can't really escalate, so this can't be demoed in Preview — demo the Clarification Loop instead. |
+| **Failure: Action Error** | System + subagent instructions: any action returning success False / error → Log_Agent_Failure (High for refunds, else Medium). LLM-driven, not deterministic. |
+
+### Flows (all deployed + Active)
+| Flow | Type | Purpose |
+|---|---|---|
+| `Verify_Pronto_Customer` | Autolaunched, system mode | Email + last name → contactId, firstName, verified |
+| `Log_Agent_Failure` | Autolaunched, system mode | Inputs failureType, summary, priority, contactId, storefrontName → Case (Origin Agent, Failure Type, Subject "Agent failure: {type}", owner Agent Escalations Queue). Outputs caseNumber, success. Ignores junk contact ids. |
+| `Agent_Failure_Alert_Notification` | Record-triggered after-save, Case create, Origin = Agent | Bell notification `Agent_Failure_Alert` to the support lead (title = failure type + priority, body = case number + summary, click opens the Case) + email to the same person. Support lead = constant `supportLeadUsername` = `v413nc@gmail.com`. |
+| `Check_Merchant_Reports` | Autolaunched, system mode | storefrontName → hasReport, reportSubject, reportReason, caseNumber, matchedStorefront |
+
+The 3 agent-called flows run in **system mode** because the agent's service user could not run
+them in user mode ("An error occurred when executing a flow interview"). The permission set
+`Pronto_Ideathon_Access` also grants the agent user access to those flows and the 3 Apex classes.
+
+### Tested (live-action preview of the local script, before publishing)
+- Fries story: "my fries were missing" → asks email + last name → verified → order 10301 →
+  "Urban Table Downtown already reported being out of fries tonight" → proposes $14.20 → "yes" →
+  refund REF-000x issued. ✅
+- Clarification loop: "hmm" → clarifying question; "I don't know, something is off" → logs
+  Clarification Loop case, gives case number, offers live agent. ✅
+- Flows tested directly in Apex: wrong last name rejected; bad contact id handled; Fusion Bites has no report. ✅
+- Test records were deleted afterwards, except **Case 00001041** (Action Error, TEST) kept so Valen
+  can confirm the bell + email arrived. Delete it after.
+
+### How to re-run the preview from the CLI (any Claude session)
+```bash
+S=$(sf agent preview start --authoring-bundle Pronto_Service_Agent --use-live-actions --json | jq -r .result.sessionId)
+sf agent preview send --authoring-bundle Pronto_Service_Agent --session-id $S -u "my fries were missing"
+sf agent preview end --authoring-bundle Pronto_Service_Agent --session-id $S
+```
+Traces land in `.sfdx/agents/Pronto_Service_Agent/sessions/<id>/traces/` (shows every action input/output and errors).
+
+### Human steps
+1. **Activate v2** (Valen).
+2. Confirm the bell icon + email for Case 00001041 reached Valen.
+3. In Agentforce Builder Preview: send two vague messages ("hmm", "something is off") → case number
+   in chat → bell lights up. Reset preview between tests.
+4. Demo prep: the bonus only fires if a Merchant Report case for Urban Table Downtown was created
+   in the last 24h — send the "Out of fries tonight" email shortly before presenting.

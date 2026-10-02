@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>AgentStorefrontActions</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IssueRefundReceiptAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OrderStatusCardAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Field access for the Pronto Ideathon build (merchant channel, agent failure handling, reporting). Assigned to the support lead and the Agentforce service agent user.</description>
+    <flowAccesses>
+        <enabled>true</enabled>
+        <flow>Check_Merchant_Reports</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>true</enabled>
+        <flow>Log_Agent_Failure</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>true</enabled>
+        <flow>Verify_Pronto_Customer</flow>
+    </flowAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Pronto Ideathon Access</label>
     <fieldPermissions>

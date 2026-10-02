@@ -1,0 +1,28 @@
+{
+  "required" : [ "refundAmount", "refundReason" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "refundAmount" : {
+      "title" : "Refund Amount",
+      "description" : "Refund amount in dollars, confirmed by the customer.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "refundReason" : {
+      "title" : "Refund Reason",
+      "description" : "Short reason, for example Missing large fries from order 10301 at Urban Table Downtown.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "verifiedContactId" : {
+      "title" : "Verified Contact Id",
+      "description" : "Verified customer id.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

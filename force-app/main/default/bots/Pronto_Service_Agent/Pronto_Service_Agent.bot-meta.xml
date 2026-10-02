@@ -196,7 +196,7 @@
         <includeInPrompt>false</includeInPrompt>
         <label>Routable Id</label>
     </contextVariables>
-    <description>New agent description</description>
+    <description>Pronto customer service agent: verifies customers, resolves missing, wrong or late order items with refunds, checks merchant-reported issues, finds storefronts, escalates to humans, and logs a case whenever it fails.</description>
     <label>Pronto Service Agent</label>
     <logPrivateConversationData>false</logPrivateConversationData>
     <richContentEnabled>true</richContentEnabled>
