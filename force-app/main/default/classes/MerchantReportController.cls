@@ -38,17 +38,15 @@ public without sharing class MerchantReportController {
             Description = message + '\n\nStorefront: ' + storefront + '\nSubmitted via the Pronto merchant site.',
             Reported_Storefront__c = storefront
         );
-        // Link the sender like Email-to-Case / Web-to-Case do: only when exactly one Contact has this email.
-        List<Contact> contacts = [SELECT Id, AccountId FROM Contact WHERE Email = :email LIMIT 2];
-        if (contacts.size() == 1) {
-            c.ContactId = contacts[0].Id;
-            c.AccountId = contacts[0].AccountId;
-        }
+        // The sender is matched to a Contact by SuppliedEmail in the Merchant_Report_Case_Enrichment flow (system mode),
+        // so site guests never need access to Contacts.
         Database.DMLOptions options = new Database.DMLOptions();
         options.assignmentRuleHeader.useDefaultRule = true;      // Merchant Report -> Merchant Ops Queue
         options.EmailHeader.triggerAutoResponseEmail = true;     // merchant confirmation email
         c.setOptions(options);
         insert c;
-        return [SELECT CaseNumber FROM Case WHERE Id = :c.Id].CaseNumber;
+        // Site guests cannot read the Case back (guest sharing), so the merchant gets the case number in the
+        // confirmation email sent by the Pronto Merchant Reports auto-response rule.
+        return 'sent';
     }
 }

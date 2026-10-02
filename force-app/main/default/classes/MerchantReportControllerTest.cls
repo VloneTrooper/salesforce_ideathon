@@ -8,9 +8,9 @@ private class MerchantReportControllerTest {
         insert new Contact(LastName = 'Manager', Email = 'mgr@test.example', AccountId = a.Id);
 
         System.assert(MerchantReportController.getStorefronts().contains('Test Kitchen'));
-        String caseNumber = MerchantReportController.submitReport('mgr@test.example', 'Test Kitchen', 'Out of fries tonight');
+        System.assertEquals('sent', MerchantReportController.submitReport('mgr@test.example', 'Test Kitchen', 'Out of fries tonight'));
 
-        Case c = [SELECT Origin, ContactId, AccountId, Reported_Storefront__c, Subject FROM Case WHERE CaseNumber = :caseNumber];
+        Case c = [SELECT Origin, ContactId, AccountId, Reported_Storefront__c, Subject FROM Case WHERE Subject = 'Out of fries tonight' LIMIT 1];
         System.assertEquals('Merchant Report', c.Origin);
         System.assertEquals(a.Id, c.AccountId);
         System.assertEquals('Test Kitchen', c.Reported_Storefront__c);

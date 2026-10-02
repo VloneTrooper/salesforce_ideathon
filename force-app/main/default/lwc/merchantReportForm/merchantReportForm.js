@@ -7,7 +7,7 @@ export default class MerchantReportForm extends LightningElement {
     storefront = '';
     message = '';
     error;
-    caseNumber;
+    sent = false;
     submitting = false;
     storefrontOptions = [];
 
@@ -46,7 +46,8 @@ export default class MerchantReportForm extends LightningElement {
         if (!inputs.every((input) => input.reportValidity())) return;
         this.submitting = true;
         try {
-            this.caseNumber = await submitReport({ email: this.email, storefront: this.storefront, message: this.message });
+            await submitReport({ email: this.email, storefront: this.storefront, message: this.message });
+            this.sent = true;
             this.message = '';
         } catch (e) {
             this.error = (e && e.body && e.body.message) || 'Could not send your report. Please try again.';
@@ -56,6 +57,6 @@ export default class MerchantReportForm extends LightningElement {
     }
 
     handleReset() {
-        this.caseNumber = undefined;
+        this.sent = false;
     }
 }

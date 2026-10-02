@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingGuestRules>
+        <fullName>Merchant_Site_Guests_Read_Storefronts</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Lets visitors of the Merchant Support site (/merchants) pick their storefront on the Merchant Report Form.</description>
+        <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
+        <label>Merchant site guests read storefronts</label>
+        <sharedTo>
+            <guestUser>Merchant_Support</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </criteriaItems>
+    </sharingGuestRules>
+</SharingRules>

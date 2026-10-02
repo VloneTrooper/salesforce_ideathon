@@ -1,8 +1,8 @@
 <template>
     <section class="card">
-        <template lwc:if={caseNumber}>
+        <template lwc:if={sent}>
             <h2 class="title ok">Report sent</h2>
-            <p class="lede">Pronto Merchant Ops has it — reference <strong>{caseNumber}</strong>. If customers report the same problem, our support assistant will already know.</p>
+            <p class="lede">Pronto Merchant Ops has it. Your reference number is in the confirmation email we just sent you. If customers report the same problem, our support assistant will already know.</p>
             <lightning-button variant="base" label="Send another report" onclick={handleReset}></lightning-button>
         </template>
         <template lwc:else>

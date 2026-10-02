@@ -330,3 +330,20 @@ utility bar Omni-Channel + History. New Case list views **Merchant Reports** and
 in the repo are **partial** profiles (only the app/tab/class settings) — deploying them adds those settings only.
 
 **Cleanup:** delete Case 00001121 (TEST site form) after Valen sees the rebranded email.
+
+### Oct 2 (~1:15am) — fixes from Valen's step C/E retest
+- **Merchant form "Couldn't load storefronts":** guest users in this org are blocked even inside `without sharing` Apex unless
+  they have object access *and* records are shared to them. Fixes: `Merchant Support Profile` (guest) got Read on
+  Storefront__c / Contact, Create+Read on Case, FLS on Case.Origin, SuppliedEmail, Reported_Storefront__c; new guest sharing
+  rule `Merchant_Site_Guests_Read_Storefronts` (Read, all storefronts). Contact matching moved out of Apex into the
+  enrichment flow (Case.SuppliedEmail → exactly one Contact → ContactId/AccountId), so guests never read Contacts. The guest
+  can't read the Case back, so the form now says "Report sent — reference number is in the confirmation email".
+  Verified with a runAs(site guest user) probe test (deleted afterwards): 21 storefronts, submit → Merchant Operations /
+  Out of Stock / Urban Table Downtown / Ethan Skinner / Urban Eats Collective / Merchant Ops Queue.
+- **Escalation never reached a human:** MS-00000006 escalated correctly and waited in Customer_Service_Messaging_Queue,
+  but Valen was at Omni capacity (default presence config = 5 units; two open Case works × 2 units; a chat needs 2).
+  Valen, Ethan, Pronto Merchant Ops now use **Messaging_Presence_Configuration (capacity 20)**. Go Offline → Available to pick
+  it up. Close Cases you're done with so they stop holding capacity.
+- **No alert email for live failures:** cases from live chat are created by the agent user (noreply@example.com), which
+  Gmail drops. `Agent_Failure_Alert_Notification` email now uses senderType **DefaultWorkflowUser**. Tested (Case 00001123).
+- Cleanup later: Cases 00001121, 00001123 (tests).

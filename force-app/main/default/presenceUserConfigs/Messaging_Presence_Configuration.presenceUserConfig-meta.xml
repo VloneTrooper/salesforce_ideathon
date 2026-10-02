@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PresenceUserConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <users>
+            <user>ethanskinner216@gmail.com</user>
+            <user>prontosupport2@pronto-ideathon.demo</user>
+            <user>v413nc@gmail.com</user>
+        </users>
+    </assignments>
+    <capacity>20</capacity>
+    <enableAutoAccept>false</enableAutoAccept>
+    <enableDecline>false</enableDecline>
+    <enableDeclineReason>false</enableDeclineReason>
+    <enableDisconnectSound>true</enableDisconnectSound>
+    <enableRequestSound>true</enableRequestSound>
+    <hasAfterConvoWorkTimer>false</hasAfterConvoWorkTimer>
+    <label>Messaging Presence Configuration</label>
+</PresenceUserConfig>

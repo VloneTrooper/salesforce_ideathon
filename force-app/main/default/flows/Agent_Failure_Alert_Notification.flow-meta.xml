@@ -68,6 +68,12 @@
                 <elementReference>emailBody</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>DefaultWorkflowUser</stringValue>
+            </value>
+        </inputParameters>
     </actionCalls>
     <apiVersion>67.0</apiVersion>
     <assignments>
