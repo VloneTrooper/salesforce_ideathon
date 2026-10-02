@@ -205,14 +205,14 @@
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <groupingColumn>OWNER</groupingColumn>
-                <header>Open work by queue</header>
+                <groupingColumn>ORIGIN</groupingColumn>
+                <header>Open follow-up work</header>
                 <legendPosition>Right</legendPosition>
                 <report>Pronto_Ideathon/Open_Cases_by_Queue</report>
                 <showPercentage>false</showPercentage>
                 <showValues>true</showValues>
                 <sortBy>RowValueDescending</sortBy>
-                <title>Merchant Ops + Agent Escalations</title>
+                <title>Merchant reports vs agent failures</title>
                 <useReportChart>false</useReportChart>
             </dashboardComponent>
             <rowIndex>10</rowIndex>
