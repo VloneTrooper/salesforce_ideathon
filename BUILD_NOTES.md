@@ -15,7 +15,7 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 | 4 Photo evidence | ❌ Dropped — org lacks the file-attachment permission (verified by Valen). Agent v3 no longer mentions photos. Put it on the "next steps" slide | — |
 | 5 Bonus merchant-aware agent | 🟡 Built early, tested in live preview (in v2) | Rehearse email → chat sequence |
 
-**Next up:** Valen activates v4 and re-runs checks 5–6 on **/customers**. Later idea (not started): let the Merchant Support Agent chatbot file Merchant Reports into the same pipeline.
+**Next up:** Ship. Demo brief (features, 10-min timeline, morning checklist, insight, Q&A, fallbacks): https://claude.ai/artifact/9brcErEtaZjYJt5uaagqtL . Test data from Oct 1–2 night deleted; open-work chart now groups by Origin. Optional add-ons listed in the brief.
 
 ## Key facts
 - Org: `hackathon-org` (Developer Edition, org id 00Dfj00000fQ9T5EAK).
