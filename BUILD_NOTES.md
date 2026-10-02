@@ -11,11 +11,11 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 | 1 Merchant & Courier channel | 🟡 Built + flow tested | Verify routing address in Prontosupport2@gmail.com; set up Gmail forwarding; send test email (see Phase 1) |
 | 2 Agent failure handling | 🟡 Built, tested in live preview, published as **v2 (inactive)** | Valen activates v2; confirm bell + email for Case 00001041 |
 | Ex. 3 Verification + refunds | 🟡 Built, tested in live preview (in v2) | Activate v2 |
-| 3 Report & dashboard | ⏳ Not started | Approve insight sentence; export .xlsx + PDF |
-| 4 Photo evidence | ⏳ Not started | TBD |
+| 3 Report & dashboard | 🟡 Built (4 reports + dashboard), sample data seeded | Check filters in the UI; approve insight sentence; export .xlsx + PDF |
+| 4 Photo evidence | 🟡 Agent prompt done (in v2); attachment toggle not found in metadata | Valen/Ethan: find + enable the attachment setting in Setup, republish, test from live site |
 | 5 Bonus merchant-aware agent | 🟡 Built early, tested in live preview (in v2) | Rehearse email → chat sequence |
 
-**Next up:** Phase 4 (photo attachments) investigation, then Phase 3 (seed data, reports, dashboard).
+**Next up:** Human checks (see each phase). Then Phase 6: deliverables + rehearsal using the **Demo runbook** at the bottom.
 
 ## Key facts
 - Org: `hackathon-org` (Developer Edition, org id 00Dfj00000fQ9T5EAK).
@@ -153,3 +153,94 @@ Traces land in `.sfdx/agents/Pronto_Service_Agent/sessions/<id>/traces/` (shows 
    in chat → bell lights up. Reset preview between tests.
 4. Demo prep: the bonus only fires if a Merchant Report case for Urban Table Downtown was created
    in the last 24h — send the "Out of fries tonight" email shortly before presenting.
+
+---
+
+## Phase 3 — Report & dashboard 🟡 built, awaiting human checks
+
+**Dashboard:** Pronto Service Health —
+https://orgfarm-db2402fd58-dev-ed.develop.lightning.force.com/lightning/r/Dashboard/01Zfj000008LgUHEA0/view
+(folder "Pronto Ideathon Dashboards", runs as Valen). Reports are in folder "Pronto Ideathon".
+
+| Component | Report | Shows |
+|---|---|---|
+| Order issues by storefront (stacked bar) | `Order_Issues_by_Storefront_and_Source` (matrix: rows Storefront, columns Origin; filter Reason = order-issue values) | Merchant-vs-customer reporting gap |
+| Issue type mix (donut) | `Order_Issue_Type_Mix` (grouped by Reason) | Missing / late / wrong / cold / out of stock / prep delay / handoff |
+| Agent failures by type (column) | `Agent_Failures_by_Type` (Origin = Agent, grouped by Failure Type) | Clarification Loop vs Action Error vs Escalation Failed |
+| Open work by queue (bar) | `Open_Cases_by_Queue` (open, owner contains "Queue") | Merchant Ops Queue vs Agent Escalations Queue |
+
+**Dashboard filters:** Origin (Pronto App / Web / Merchant Report / Agent), Storefront (8 storefronts in the
+sample data), Created Date (Today / Last 7 days / This month). Every component is wired to all three filters.
+Expected quirks: Storefront filter empties the agent-failure chart (agent failures rarely have a storefront);
+Created Date makes little difference because all sample cases were created on Oct 1.
+
+**Sample data:** `scripts/apex/seed_sample_cases.apex` — 58 storefront cases + 11 agent-failure cases, every one
+tagged `[Sample data]` at the start of Description. Merchant reports were seeded **Closed** so they don't
+trigger the live bonus demo; agent failures were inserted as Web then switched to Agent so they didn't fire
+11 alert notifications. **The pattern (Urban Table Downtown under-reports) was designed into the seed data —
+say so in Q&A: "seeded sample data, shaped to show what the dashboard surfaces."**
+Delete all with: `delete [SELECT Id FROM Case WHERE Description LIKE '[Sample data]%'];`
+
+**Numbers as of build (report API):**
+- Order issues by storefront: Urban Table Downtown 11 customer-reported (6 missing items) vs **1** merchant
+  report; Fusion Bites Oak Lawn 6 customer vs **5** merchant; Munch Central Trinity Groves 4 vs 5;
+  The Savory Spot Bishop Arts 6 vs 0.
+- Agent failures: Clarification Loop 6, Action Error 4 (incl. test Case 00001041), Escalation Failed 2.
+- Open by queue: Agent Escalations 4, Merchant Ops 2.
+
+**Draft insight (needs Valen's approval; numbers will shift once the live demo email + test cases change):**
+> "Urban Table Downtown has the most customer-reported order issues (11, six of them missing items) but sent
+> only one merchant report, while Fusion Bites Oak Lawn self-reported 5 of its 11 — so Merchant Ops should
+> call Urban Table Downtown first and get them emailing stock-outs before customers notice (Goals 1 and 2)."
+
+**Human steps:** open dashboard → try each filter → approve/edit insight → Report: Export → Formatted Report
+(.xlsx) on "Order Issues by Storefront and Source" → Dashboard: print to PDF / full screenshot.
+
+---
+
+## Phase 4 — Photo evidence in chat 🟡 partial
+
+- ✅ Agent v2 invites the customer to attach a photo with the paperclip when there's no merchant report, and is
+  told never to claim it can see photos.
+- ❌ Could not enable attachments via metadata: `isAttachmentUploadEnabled` is rejected on both
+  `MessagingChannel` and `EmbeddedServiceConfig.embeddedServiceMessagingChannel` (API 67). Original files restored.
+- **Human steps:** Setup → Messaging Settings → Pronto Service Agent channel, and Setup → Embedded Service
+  Deployments → Pronto_Service_Agent: look for a file attachment / file upload option, turn it on, **Publish**
+  the deployment, reload the Experience site
+  (https://orgfarm-db2402fd58-dev-ed.develop.my.site.com/ESWProntoServiceAgent1790904441555), send a photo,
+  then check the Messaging Session record / transcript and whether it shows on the Case.
+- Verify whether the paperclip appears while the AI agent is chatting or only after a human handoff.
+  If it only works after handoff, demo it on the rep side or move it to a "next steps" slide (plan fallback).
+
+---
+
+## Demo runbook (for the presentation and for a Claude walkthrough)
+
+Story: **"One bad night at Urban Table Downtown."** Run it twice before presenting.
+
+**Before you present (≈15 min before):**
+1. Agent v2 is **Active** (Agentforce Builder).
+2. From ethanskinner216@gmail.com send to Prontosupport2@gmail.com: subject **"Out of fries tonight"**.
+   Confirm a new Case in **Merchant Ops Queue** with Storefront = Urban Table Downtown, Reason = Out of Stock.
+   (The bonus only fires if this case is **open** and **< 24h old**.) Screenshot it as a backup.
+3. Valen logged in, bell icon visible, Omni-Channel set to Available.
+
+**Live sequence:**
+| Min | Do | Say |
+|---|---|---|
+| 3–5 | Show the Case from the email (Account, Contact, Storefront, Reason auto-filled, owner Merchant Ops Queue) | "The restaurant told us first — by email, no new app." |
+| 5–6 | Chat on the site or Builder Preview: "my fries were missing" → `alex.morgan@example.com`, `Morgan` → order `10301` → "yes" | Agent: "Urban Table Downtown already reported being out of fries tonight" → $14.20 refund, REF number. "Both channels work as one system." |
+| 6–7:30 | New preview: "hmm" → "I don't know, something is off" | Agent gives a case number; Valen's bell lights up; email arrives. "Failures become cases, not dead ends." |
+| 7:30–9 | Dashboard → filter Storefront = Urban Table Downtown → read the insight | Tie to Goals 1–3. |
+
+**Q&A facts:** verification = email + last name must both match a Contact; refund amount = order total ÷ items ×
+affected items, customer must confirm; failure types and priorities per plan; keyword classification is
+subject-only and case-insensitive; the agent does not read photos; sample data is seeded and tagged.
+
+**If something breaks:** agent v1 is still there (re-activate it); flows can be deactivated in Setup → Flows;
+everything is in git (github.com/VloneTrooper/salesforce_ideathon), one commit per phase.
+
+### Cleanup before submission
+- Delete test Case **00001041** once the bell/email check is done.
+- Delete the Gmail-forwarding confirmation Case (from forwarding-noreply@google.com) in Merchant Ops Queue.
+- Keep the `[Sample data]` cases — the dashboard needs them.
