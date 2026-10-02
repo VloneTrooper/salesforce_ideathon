@@ -23,7 +23,8 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 - Team users (all System Administrator + Service Cloud User + `Pronto_Ideathon_Access` + members of both queues):
   Valen Cole, **Ethan Skinner** (upgraded from Force.com Free on Oct 1), **Pronto Merchant Ops** (username
   `prontosupport2@pronto-ideathon.demo`, email Prontosupport2@gmail.com — the inbox owner; password-setup email sent there).
-  Script: `scripts/apex/setup_team_users.apex`.
+  Script: `scripts/apex/setup_team_users.apex`. All three also have `Agent_Presence_Status_Access` (Omni "Available").
+  Pronto Merchant Ops default app = Service Console; Omni-Channel widget added to the Service Console utility bar.
 - Team inbox for merchants/couriers: **Prontosupport2@gmail.com**.
 - Merchant account: **Urban Eats Collective** (`001fj00001pGnvjAAC`); demo storefront **Urban Table Downtown**.
 - Agent runs as `agentforce_service_agent.wzhzea842vrr@example.com` (EinsteinServiceAgent User).
