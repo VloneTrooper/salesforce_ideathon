@@ -1,100 +1,130 @@
 {
-  "type" : "sfdc_cms__view",
-  "title" : "Home",
-  "contentBody" : {
-    "component" : {
-      "children" : [ {
-        "children" : [ {
-          "attributes" : {
-            "backgroundImageConfig" : "",
-            "backgroundImageOverlay" : "rgba(0,0,0,0)",
-            "componentSpacerSize" : "",
-            "dxpStyle" : { },
-            "layoutDirectionDesktop" : "row",
-            "layoutDirectionMobile" : "column",
-            "layoutDirectionTablet" : "column",
-            "maxContentWidth" : "",
-            "sectionColumnGutterWidth" : "",
-            "sectionConfig" : "{\"UUID\":\"7e6ba097-03ae-4703-a8ae-0fddf3841fe2\",\"columns\":[{\"UUID\":\"fa3bb019-fe46-43ab-b811-43b690582d6c\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
-            "sectionMinHeight" : "",
-            "sectionVerticalAlign" : "flex-start"
-          },
-          "children" : [ {
-            "children" : [ {
-              "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<div class=\"hero hero--merchant\"><div class=\"hero__layout\"><div class=\"hero__content\"><p class=\"hero__eyebrow\">Merchant Support</p><h1 class=\"hero__headline\">Run your restaurant, the easy way</h1><p class=\"hero__subheadline\">Manage orders, update your menu and get the answers you need to keep your kitchen running smoothly.</p><div class=\"hero__quick\"><span class=\"hero__quick-label\">Popular</span><a class=\"hero__pill\" href=\"/orders\">Orders</a><a class=\"hero__pill\" href=\"/menu\">Menu</a><a class=\"hero__pill\" href=\"#support\">Hardware</a><a class=\"hero__pill\" href=\"#knowledge\">Payouts</a></div><div class=\"hero__chips\"><span class=\"hero__chip\">Same-day resolution</span><span class=\"hero__chip\">Dedicated merchant line</span><span class=\"hero__chip\">Free hardware support</span></div><div class=\"hero__cta\"><a class=\"hero__button hero__button--primary\" href=\"/dashboard\">Go to Dashboard</a><a class=\"hero__button hero__button--secondary\" href=\"#support\">Contact support</a></div></div><div class=\"hero__photo\"><img src=\"/sfsites/c/resource/pronto_support_redesign/merchant-hero.jpg\" alt=\"Restaurant dining room\"><div class=\"hero__badge\">98% of issues resolved same day</div></div></div></div>"
+  "type": "sfdc_cms__view",
+  "title": "Home",
+  "contentBody": {
+    "component": {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": {
+                "backgroundImageConfig": "",
+                "backgroundImageOverlay": "rgba(0,0,0,0)",
+                "componentSpacerSize": "",
+                "dxpStyle": {},
+                "layoutDirectionDesktop": "row",
+                "layoutDirectionMobile": "column",
+                "layoutDirectionTablet": "column",
+                "maxContentWidth": "",
+                "sectionColumnGutterWidth": "",
+                "sectionConfig": "{\"UUID\":\"7e6ba097-03ae-4703-a8ae-0fddf3841fe2\",\"columns\":[{\"UUID\":\"fa3bb019-fe46-43ab-b811-43b690582d6c\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+                "sectionMinHeight": "",
+                "sectionVerticalAlign": "flex-start"
               },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "645cd4af-d91c-4168-bd6d-08762d0d9b23",
-              "type" : "component"
-            }, {
-              "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<div class=\"stats-strip\"><div><strong>98%</strong><span>Resolved same day</span></div><div><strong>24/7</strong><span>Merchant line</span></div><div><strong>&lt;5 min</strong><span>Avg. response</span></div></div><div class=\"quick-links\"><h2 class=\"quick-links__title\">Quick actions</h2><p class=\"quick-links__subtitle\">Jump straight to the tools you use most.</p><div class=\"quick-links__grid\"><div class=\"quick-links__card\"><div class=\"quick-links__image\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/orders.svg\" alt=\"\"></div><div class=\"quick-links__header\">Go to Orders</div><div class=\"quick-links__body\">View and manage incoming orders</div><div class=\"quick-links__footer\"><a href=\"/orders\">Open orders</a></div></div><div class=\"quick-links__card\"><div class=\"quick-links__image\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/menu.svg\" alt=\"\"></div><div class=\"quick-links__header\">Manage Menu</div><div class=\"quick-links__body\">Update items, prices and availability</div><div class=\"quick-links__footer\"><a href=\"/menu\">Manage menu</a></div></div><div class=\"quick-links__card\"><div class=\"quick-links__image\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/insights.svg\" alt=\"\"></div><div class=\"quick-links__header\">View Insights</div><div class=\"quick-links__body\">Track sales and performance</div><div class=\"quick-links__footer\"><a href=\"/insights\">View insights</a></div></div></div></div>"
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<div class=\"hero hero--merchant\"><div class=\"hero__layout\"><div class=\"hero__content\"><p class=\"hero__eyebrow\">Merchant Support</p><h1 class=\"hero__headline\">Run your restaurant, the easy way</h1><p class=\"hero__subheadline\">Manage orders, update your menu and get the answers you need to keep your kitchen running smoothly.</p><div class=\"hero__quick\"><span class=\"hero__quick-label\">Popular</span><a class=\"hero__pill\" href=\"/orders\">Orders</a><a class=\"hero__pill\" href=\"/menu\">Menu</a><a class=\"hero__pill\" href=\"#support\">Hardware</a><a class=\"hero__pill\" href=\"#knowledge\">Payouts</a></div><div class=\"hero__chips\"><span class=\"hero__chip\">Same-day resolution</span><span class=\"hero__chip\">Dedicated merchant line</span><span class=\"hero__chip\">Free hardware support</span></div><div class=\"hero__cta\"><a class=\"hero__button hero__button--primary\" href=\"/dashboard\">Go to Dashboard</a><a class=\"hero__button hero__button--secondary\" href=\"#support\">Contact support</a></div></div><div class=\"hero__photo\"><img src=\"/sfsites/c/resource/pronto_support_redesign/merchant-hero.jpg\" alt=\"Restaurant dining room\"><div class=\"hero__badge\">98% of issues resolved same day</div></div></div></div>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "645cd4af-d91c-4168-bd6d-08762d0d9b23",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<p style=\"text-align:center\">Pronto customer? <a href=\"/customers/\">Get help with an order →</a></p>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "372a75aa-7c32-46f5-b17a-5cd6e79a072f",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {},
+                      "definition": "c:merchantReportForm",
+                      "id": "089e141a-51cd-4fc1-acb2-5915355d5843",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<div class=\"stats-strip\"><div><strong>98%</strong><span>Resolved same day</span></div><div><strong>24/7</strong><span>Merchant line</span></div><div><strong>&lt;5 min</strong><span>Avg. response</span></div></div><div class=\"quick-links\"><h2 class=\"quick-links__title\">Quick actions</h2><p class=\"quick-links__subtitle\">Jump straight to the tools you use most.</p><div class=\"quick-links__grid\"><div class=\"quick-links__card\"><div class=\"quick-links__image\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/orders.svg\" alt=\"\"></div><div class=\"quick-links__header\">Go to Orders</div><div class=\"quick-links__body\">View and manage incoming orders</div><div class=\"quick-links__footer\"><a href=\"/orders\">Open orders</a></div></div><div class=\"quick-links__card\"><div class=\"quick-links__image\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/menu.svg\" alt=\"\"></div><div class=\"quick-links__header\">Manage Menu</div><div class=\"quick-links__body\">Update items, prices and availability</div><div class=\"quick-links__footer\"><a href=\"/menu\">Manage menu</a></div></div><div class=\"quick-links__card\"><div class=\"quick-links__image\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/insights.svg\" alt=\"\"></div><div class=\"quick-links__header\">View Insights</div><div class=\"quick-links__body\">Track sales and performance</div><div class=\"quick-links__footer\"><a href=\"/insights\">View insights</a></div></div></div></div>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "62c504aa-0c36-4e0d-93fc-fbb0e2404fb0",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<div class=\"knowledge-section\" id=\"knowledge\"><h2 class=\"knowledge-section__title\">Knowledge Articles</h2><p class=\"knowledge-section__subtitle\">Find answers to common questions and explore detailed guides.</p><div class=\"knowledge-grid\"><div class=\"knowledge-column\"><div class=\"knowledge-column__header\">Partnering with Pronto</div><ul class=\"knowledge-column__list\"><li class=\"knowledge-column__list-item\"><a href=\"#\">How does Pronto work?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Is Pronto available in my area?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I activate my restaurant?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How long does it take to get started?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Merchant FAQs</a></li></ul><div class=\"knowledge-column__footer\"><a href=\"#\">View all 20+</a></div></div><div class=\"knowledge-column\"><div class=\"knowledge-column__header\">Updating Menu Information</div><ul class=\"knowledge-column__list\"><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I update my menu?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I mark an item out of stock?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I edit item prices?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Optimizing your menu</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Editing modifiers</a></li></ul><div class=\"knowledge-column__footer\"><a href=\"#\">View all 19</a></div></div><div class=\"knowledge-column\"><div class=\"knowledge-column__header\">Tablet &amp; Hardware Support</div><ul class=\"knowledge-column__list\"><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I troubleshoot my tablet?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do scheduled orders work?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I download Order Manager?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I troubleshoot my printer?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I cancel an order?</a></li></ul><div class=\"knowledge-column__footer\"><a href=\"#\">View all 20+</a></div></div></div></div>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "1d6214aa-a8cf-4229-8421-9e2f299038bc",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<div class=\"support-section\" id=\"support\"><h2 class=\"support-section__title\">Need assistance?</h2><p class=\"support-section__subtitle\">Choose the support option that works best for your restaurant.</p><div class=\"support-grid\"><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/merchant-chat.svg\" alt=\"\"></div><div class=\"support-card__header\">Live Chat</div><div class=\"support-card__body\">Connect with merchant support for help with orders, menu and hardware.</div><div class=\"support-card__footer\"><a href=\"#\">Start chat</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/merchant-phone.svg\" alt=\"\"></div><div class=\"support-card__header\">Priority Phone Line</div><div class=\"support-card__body\">Reach a dedicated merchant specialist for urgent restaurant issues.</div><div class=\"support-card__footer\"><a href=\"#\">Call us</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/merchant-mail.svg\" alt=\"\"></div><div class=\"support-card__header\">Email Support</div><div class=\"support-card__body\">Send your question and our merchant team will get back to you fast.</div><div class=\"support-card__footer\"><a href=\"#\">Email us</a></div></div></div></div>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "f0104ea9-78bd-4ee8-bb25-a82b0a064350",
+                      "type": "component"
+                    }
+                  ],
+                  "id": "fa3bb019-fe46-43ab-b811-43b690582d6c",
+                  "name": "col1",
+                  "title": "Column 1",
+                  "type": "region"
+                }
+              ],
+              "definition": "community_layout:section",
+              "id": "7e6ba097-03ae-4703-a8ae-0fddf3841fe2",
+              "type": "component"
+            }
+          ],
+          "id": "0dd1803c-f877-4eb4-9c0f-cc0592a5f59f",
+          "name": "content",
+          "title": "Content",
+          "type": "region"
+        },
+        {
+          "children": [
+            {
+              "attributes": {
+                "customHeadTags": "",
+                "description": "",
+                "dxpStyle": {},
+                "pageTitle": "Home",
+                "recordId": "{!recordId}"
               },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "62c504aa-0c36-4e0d-93fc-fbb0e2404fb0",
-              "type" : "component"
-            }, {
-              "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<div class=\"knowledge-section\" id=\"knowledge\"><h2 class=\"knowledge-section__title\">Knowledge Articles</h2><p class=\"knowledge-section__subtitle\">Find answers to common questions and explore detailed guides.</p><div class=\"knowledge-grid\"><div class=\"knowledge-column\"><div class=\"knowledge-column__header\">Partnering with Pronto</div><ul class=\"knowledge-column__list\"><li class=\"knowledge-column__list-item\"><a href=\"#\">How does Pronto work?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Is Pronto available in my area?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I activate my restaurant?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How long does it take to get started?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Merchant FAQs</a></li></ul><div class=\"knowledge-column__footer\"><a href=\"#\">View all 20+</a></div></div><div class=\"knowledge-column\"><div class=\"knowledge-column__header\">Updating Menu Information</div><ul class=\"knowledge-column__list\"><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I update my menu?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I mark an item out of stock?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I edit item prices?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Optimizing your menu</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">Editing modifiers</a></li></ul><div class=\"knowledge-column__footer\"><a href=\"#\">View all 19</a></div></div><div class=\"knowledge-column\"><div class=\"knowledge-column__header\">Tablet &amp; Hardware Support</div><ul class=\"knowledge-column__list\"><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I troubleshoot my tablet?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do scheduled orders work?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I download Order Manager?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I troubleshoot my printer?</a></li><li class=\"knowledge-column__list-item\"><a href=\"#\">How do I cancel an order?</a></li></ul><div class=\"knowledge-column__footer\"><a href=\"#\">View all 20+</a></div></div></div></div>"
-              },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "1d6214aa-a8cf-4229-8421-9e2f299038bc",
-              "type" : "component"
-            }, {
-              "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<div class=\"support-section\" id=\"support\"><h2 class=\"support-section__title\">Need assistance?</h2><p class=\"support-section__subtitle\">Choose the support option that works best for your restaurant.</p><div class=\"support-grid\"><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/merchant-chat.svg\" alt=\"\"></div><div class=\"support-card__header\">Live Chat</div><div class=\"support-card__body\">Connect with merchant support for help with orders, menu and hardware.</div><div class=\"support-card__footer\"><a href=\"#\">Start chat</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/merchant-phone.svg\" alt=\"\"></div><div class=\"support-card__header\">Priority Phone Line</div><div class=\"support-card__body\">Reach a dedicated merchant specialist for urgent restaurant issues.</div><div class=\"support-card__footer\"><a href=\"#\">Call us</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/merchant-mail.svg\" alt=\"\"></div><div class=\"support-card__header\">Email Support</div><div class=\"support-card__body\">Send your question and our merchant team will get back to you fast.</div><div class=\"support-card__footer\"><a href=\"#\">Email us</a></div></div></div></div>"
-              },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "f0104ea9-78bd-4ee8-bb25-a82b0a064350",
-              "type" : "component"
-            } ],
-            "id" : "fa3bb019-fe46-43ab-b811-43b690582d6c",
-            "name" : "col1",
-            "title" : "Column 1",
-            "type" : "region"
-          } ],
-          "definition" : "community_layout:section",
-          "id" : "7e6ba097-03ae-4703-a8ae-0fddf3841fe2",
-          "type" : "component"
-        } ],
-        "id" : "0dd1803c-f877-4eb4-9c0f-cc0592a5f59f",
-        "name" : "content",
-        "title" : "Content",
-        "type" : "region"
-      }, {
-        "children" : [ {
-          "attributes" : {
-            "customHeadTags" : "",
-            "description" : "",
-            "dxpStyle" : { },
-            "pageTitle" : "Home",
-            "recordId" : "{!recordId}"
-          },
-          "definition" : "community_builder:seoAssistant",
-          "id" : "2090b85e-a645-4177-b300-4aadc1c9f08e",
-          "type" : "component"
-        } ],
-        "id" : "7887a0fd-1a32-4290-8f5c-7503ceb1ed57",
-        "name" : "sfdcHiddenRegion",
-        "title" : "sfdcHiddenRegion",
-        "type" : "region"
-      } ],
-      "definition" : "community_layout:sldsFlexibleLayout",
-      "id" : "54108ecd-3ead-4975-a12e-16a8f3557920",
-      "type" : "component"
+              "definition": "community_builder:seoAssistant",
+              "id": "2090b85e-a645-4177-b300-4aadc1c9f08e",
+              "type": "component"
+            }
+          ],
+          "id": "7887a0fd-1a32-4290-8f5c-7503ceb1ed57",
+          "name": "sfdcHiddenRegion",
+          "title": "sfdcHiddenRegion",
+          "type": "region"
+        }
+      ],
+      "definition": "community_layout:sldsFlexibleLayout",
+      "id": "54108ecd-3ead-4975-a12e-16a8f3557920",
+      "type": "component"
     },
-    "dataProviders" : [ ],
-    "themeLayoutType" : "Inner",
-    "viewType" : "home"
+    "dataProviders": [],
+    "themeLayoutType": "Inner",
+    "viewType": "home"
   },
-  "urlName" : "home"
+  "urlName": "home"
 }

@@ -9,13 +9,13 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 |---|---|---|
 | 0 Data model | ✅ Deployed | — |
 | 1 Merchant & Courier channel | 🟡 Email channel built; ✅ **web form** built + tested | Email: verify routing address + Gmail forwarding. Form: open it in a browser once and submit |
-| 2 Agent failure handling | 🟡 Published as **v3 (inactive)** — v3 = v2 minus the photo prompt | Valen activates **v3** |
+| 2 Agent failure handling | 🟡 **v4 published (inactive)**, v3 active | Valen activates **v4** (fixes live issues from step 5/6 tests) |
 | Ex. 3 Verification + refunds | 🟡 Built, tested in live preview (in v2) | Activate v2 |
 | 3 Report & dashboard | 🟡 Built (4 reports + dashboard), sample data seeded | Check filters in the UI; approve insight sentence; export .xlsx + PDF |
 | 4 Photo evidence | ❌ Dropped — org lacks the file-attachment permission (verified by Valen). Agent v3 no longer mentions photos. Put it on the "next steps" slide | — |
 | 5 Bonus merchant-aware agent | 🟡 Built early, tested in live preview (in v2) | Rehearse email → chat sequence |
 
-**Next up:** Human checks (see each phase). Then Phase 6: deliverables + rehearsal using the **Demo runbook** at the bottom.
+**Next up:** Valen activates v4 and re-runs checks 5–6 on **/customers**. Later idea (not started): let the Merchant Support Agent chatbot file Merchant Reports into the same pipeline.
 
 ## Key facts
 - Org: `hackathon-org` (Developer Edition, org id 00Dfj00000fQ9T5EAK).
@@ -287,3 +287,46 @@ Salesforce's reply and won't show a case number — it shows "Report sent").
 
 **Demo:** pick **Urban Table Downtown**, type **"Out of fries tonight"**, send → Case appears in Merchant Ops Queue
 within a few seconds → then run the customer chat (bonus fires because an open Merchant Report exists < 24h).
+
+---
+
+## Oct 2 (~12:30am) — live-test fixes, public sites, Pronto Ops app
+
+**Live test results (Valen, references/step#5…, step#6…):** step 5 worked but after verification the live agent said
+"I am processing your report…" instead of asking for the order number; step 6 never triggered the clarification-loop case
+(router answered "hmm" itself). Step 7 report export + dashboard screenshot are in `references/`.
+
+**Agent v4** (published, inactive — activate it): order_issue is now 3 explicit stages driven by variables —
+STAGE 1 verify (`VerifiedCustomerId` empty), STAGE 2 ask for order number (`order_checked` False; set from
+`Get_Order_Status` success), STAGE 3 resolve. Router told it must never answer or clarify itself and must always route vague
+messages to ambiguous_question. Preview replay of both transcripts: ✅ "Thanks, Alex! You're verified. What's your order
+number?" → refund; ✅ second vague message logs Clarification Loop case + offers a person.
+
+**Human handoff:** "connect me to a person" escalates to `Customer_Service_Messaging_Queue` (messaging channel). It only
+connects if a queue member is **Available** in Omni at that moment (Valen / Ethan / Pronto Merchant Ops in Pronto Ops or
+Service Console). Nobody available → customer waits.
+
+**Sites:** Customer Support (/customers) and Merchant Support (/merchants) switched from Preview to **Live** (welcome emails
+turned off first) and **published** (`sf community publish`). Public access was already enabled. The `ESW…` URL is only the
+chat's backing site — it is blank by design. **The customer chat lives on /customers.**
+- /customers home: new link "Restaurant or courier partner? Report a problem tonight →" to /merchants.
+- /merchants home: new link "Pronto customer? Get help with an order →" to /customers, and the **Merchant Report Form**
+  component (LWC `merchantReportForm` + Apex `MerchantReportController`, without sharing; guest profile "Merchant Support
+  Profile" granted class access). Same pipeline as the other channels: Origin Merchant Report, Reported Storefront, contact
+  matched by email, default assignment rule → Merchant Ops Queue, auto-response email. Shows the case number on success.
+  Tests: `MerchantReportControllerTest` 2/2 pass; end-to-end Apex call → Case 00001121 Handoff Issue / Munch Central /
+  Merchant Ops Queue.
+- The Merchant Support Agent (merchant chatbot) and its ESW site are untouched (that ESW site is still Preview).
+
+**Merchant auto-reply rebranded:** template `Merchant_Report_Received` ("Pronto received your report: … (Ref 000…)") +
+active Case auto-response rule "Pronto Merchant Reports" (Origin = Merchant Report), sender name **Pronto Merchant Ops**,
+sender address v413nc@gmail.com (Salesforce forbids using the Email-to-Case routing address). Web-to-Case default response
+template switched to the same template.
+
+**Pronto Ops console app** (App Launcher → Pronto Ops; default app for the Pronto Merchant Ops user): Home = embedded
+Pronto Service Health dashboard; tabs Cases, Storefronts, Refunds (new tab), Contacts, Accounts, Reports, Dashboards;
+utility bar Omni-Channel + History. New Case list views **Merchant Reports** and **Agent Failures** (queue list views
+"Merchant Ops Queue" / "Agent Escalations Queue" already existed). `profiles/Admin` and `profiles/Merchant Support Profile`
+in the repo are **partial** profiles (only the app/tab/class settings) — deploying them adds those settings only.
+
+**Cleanup:** delete Case 00001121 (TEST site form) after Valen sees the rebranded email.

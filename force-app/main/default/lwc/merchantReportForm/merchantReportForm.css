@@ -1,0 +1,10 @@
+.card { max-width: 640px; margin: 24px auto; padding: 24px; border: 1px solid #d8dde6; border-radius: 12px; background: #fff; }
+.title { font-size: 1.5rem; font-weight: 700; margin: 0 0 6px; }
+.title.ok { color: #2e844a; }
+.lede { color: #54698d; margin: 0 0 16px; }
+lightning-input, lightning-combobox, lightning-textarea { display: block; margin-bottom: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 8px; }
+.chip { border: 1px solid #d8dde6; background: transparent; border-radius: 999px; padding: 4px 12px; cursor: pointer; font: inherit; }
+.chip:hover { border-color: #0176d3; }
+.error { color: #ba0517; margin: 8px 0; }
+.submit { display: block; margin-top: 8px; }

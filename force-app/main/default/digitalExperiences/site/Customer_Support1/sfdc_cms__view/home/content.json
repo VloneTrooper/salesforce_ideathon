@@ -1,128 +1,156 @@
 {
-  "type" : "sfdc_cms__view",
-  "title" : "Home",
-  "contentBody" : {
-    "component" : {
-      "children" : [ {
-        "children" : [ {
-          "attributes" : {
-            "backgroundImageConfig" : "",
-            "backgroundImageOverlay" : "rgba(0,0,0,0)",
-            "componentSpacerSize" : "0rem",
-            "dxpStyle" : { },
-            "layoutDirectionDesktop" : "row",
-            "layoutDirectionMobile" : "column",
-            "layoutDirectionTablet" : "column",
-            "maxContentWidth" : "",
-            "sectionColumnGutterWidth" : "0rem",
-            "sectionConfig" : "{\"UUID\":\"03aa9d3d-29e9-4404-8d95-5b9092893c6c\",\"columns\":[{\"UUID\":\"efe93f9f-390b-4b41-a99a-79a85f5b5607\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
-            "sectionMinHeight" : "",
-            "sectionVerticalAlign" : "center"
-          },
-          "children" : [ {
-            "children" : [ {
-              "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<div class=\"hero hero--customer\"><div class=\"hero__layout\"><div class=\"hero__content\"><p class=\"hero__eyebrow\">We're here to help</p><h1 class=\"hero__headline\">Welcome to Pronto Customer Support</h1><p class=\"hero__subheadline\">Track orders, resolve issues and find answers fast - real help from real people, whenever you need it.</p><div class=\"hero__quick\"><span class=\"hero__quick-label\">Popular</span><a class=\"hero__pill\" href=\"#\">Track order</a><a class=\"hero__pill\" href=\"#\">Refunds</a><a class=\"hero__pill\" href=\"#\">Delivery issue</a><a class=\"hero__pill\" href=\"#\">Account</a></div><div class=\"hero__chips\"><span class=\"hero__chip\">Avg. reply under 2 min</span><span class=\"hero__chip\">24/7 live support</span><span class=\"hero__chip\">No-hassle refunds</span></div><div class=\"hero__cta\"><a class=\"hero__button hero__button--primary\" href=\"#support\">Contact Support</a><a class=\"hero__button hero__button--secondary\" href=\"#\">Track my order</a></div></div><div class=\"hero__photo\"><img src=\"/sfsites/c/resource/pronto_support_redesign/customer-hero.jpg\" alt=\"Pronto delivery order\"><div class=\"hero__badge\">Avg. reply under 2 min</div></div></div></div>"
+  "type": "sfdc_cms__view",
+  "title": "Home",
+  "contentBody": {
+    "component": {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": {
+                "backgroundImageConfig": "",
+                "backgroundImageOverlay": "rgba(0,0,0,0)",
+                "componentSpacerSize": "0rem",
+                "dxpStyle": {},
+                "layoutDirectionDesktop": "row",
+                "layoutDirectionMobile": "column",
+                "layoutDirectionTablet": "column",
+                "maxContentWidth": "",
+                "sectionColumnGutterWidth": "0rem",
+                "sectionConfig": "{\"UUID\":\"03aa9d3d-29e9-4404-8d95-5b9092893c6c\",\"columns\":[{\"UUID\":\"efe93f9f-390b-4b41-a99a-79a85f5b5607\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+                "sectionMinHeight": "",
+                "sectionVerticalAlign": "center"
               },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "e57b3de4-2897-4c1d-ad25-3ae3d90139a4",
-              "type" : "component"
-            }, {
-              "attributes" : {
-                "clientVersion" : "WebV1",
-                "deploymentName" : "Pronto_Service_Agent",
-                "hideChatButtonOnLoad" : "Default",
-                "isExpSiteAuthMode" : false,
-                "scrtUrl" : "https://orgfarm-db2402fd58-dev-ed.develop.my.salesforce-scrt.com",
-                "siteEndpoint" : "https://orgfarm-db2402fd58-dev-ed.develop.my.site.com/ESWProntoServiceAgent1790904441555"
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<div class=\"hero hero--customer\"><div class=\"hero__layout\"><div class=\"hero__content\"><p class=\"hero__eyebrow\">We're here to help</p><h1 class=\"hero__headline\">Welcome to Pronto Customer Support</h1><p class=\"hero__subheadline\">Track orders, resolve issues and find answers fast - real help from real people, whenever you need it.</p><div class=\"hero__quick\"><span class=\"hero__quick-label\">Popular</span><a class=\"hero__pill\" href=\"#\">Track order</a><a class=\"hero__pill\" href=\"#\">Refunds</a><a class=\"hero__pill\" href=\"#\">Delivery issue</a><a class=\"hero__pill\" href=\"#\">Account</a></div><div class=\"hero__chips\"><span class=\"hero__chip\">Avg. reply under 2 min</span><span class=\"hero__chip\">24/7 live support</span><span class=\"hero__chip\">No-hassle refunds</span></div><div class=\"hero__cta\"><a class=\"hero__button hero__button--primary\" href=\"#support\">Contact Support</a><a class=\"hero__button hero__button--secondary\" href=\"#\">Track my order</a></div></div><div class=\"hero__photo\"><img src=\"/sfsites/c/resource/pronto_support_redesign/customer-hero.jpg\" alt=\"Pronto delivery order\"><div class=\"hero__badge\">Avg. reply under 2 min</div></div></div></div>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "e57b3de4-2897-4c1d-ad25-3ae3d90139a4",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {
+                        "clientVersion": "WebV1",
+                        "deploymentName": "Pronto_Service_Agent",
+                        "hideChatButtonOnLoad": "Default",
+                        "isExpSiteAuthMode": false,
+                        "scrtUrl": "https://orgfarm-db2402fd58-dev-ed.develop.my.salesforce-scrt.com",
+                        "siteEndpoint": "https://orgfarm-db2402fd58-dev-ed.develop.my.site.com/ESWProntoServiceAgent1790904441555"
+                      },
+                      "definition": "experience_messaging:embeddedMessaging",
+                      "id": "951ba56d-3932-4de8-988f-3cf66c8443f2",
+                      "type": "component"
+                    }
+                  ],
+                  "id": "efe93f9f-390b-4b41-a99a-79a85f5b5607",
+                  "name": "col1",
+                  "title": "Column 1",
+                  "type": "region"
+                }
+              ],
+              "definition": "community_layout:section",
+              "id": "03aa9d3d-29e9-4404-8d95-5b9092893c6c",
+              "type": "component"
+            },
+            {
+              "attributes": {
+                "backgroundImageConfig": "",
+                "backgroundImageOverlay": "rgba(0,0,0,0)",
+                "componentSpacerSize": "",
+                "dxpStyle": {},
+                "layoutDirectionDesktop": "row",
+                "layoutDirectionMobile": "column",
+                "layoutDirectionTablet": "column",
+                "maxContentWidth": "",
+                "sectionColumnGutterWidth": "",
+                "sectionConfig": "{\"UUID\":\"5fa87945-bc76-4df2-a9ed-ec6164b3270d\",\"columns\":[{\"UUID\":\"042ebe69-cc5c-4d7b-b16c-f8af0bfd99a4\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+                "sectionMinHeight": "",
+                "sectionVerticalAlign": "flex-start"
               },
-              "definition" : "experience_messaging:embeddedMessaging",
-              "id" : "951ba56d-3932-4de8-988f-3cf66c8443f2",
-              "type" : "component"
-            } ],
-            "id" : "efe93f9f-390b-4b41-a99a-79a85f5b5607",
-            "name" : "col1",
-            "title" : "Column 1",
-            "type" : "region"
-          } ],
-          "definition" : "community_layout:section",
-          "id" : "03aa9d3d-29e9-4404-8d95-5b9092893c6c",
-          "type" : "component"
-        }, {
-          "attributes" : {
-            "backgroundImageConfig" : "",
-            "backgroundImageOverlay" : "rgba(0,0,0,0)",
-            "componentSpacerSize" : "",
-            "dxpStyle" : { },
-            "layoutDirectionDesktop" : "row",
-            "layoutDirectionMobile" : "column",
-            "layoutDirectionTablet" : "column",
-            "maxContentWidth" : "",
-            "sectionColumnGutterWidth" : "",
-            "sectionConfig" : "{\"UUID\":\"5fa87945-bc76-4df2-a9ed-ec6164b3270d\",\"columns\":[{\"UUID\":\"042ebe69-cc5c-4d7b-b16c-f8af0bfd99a4\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
-            "sectionMinHeight" : "",
-            "sectionVerticalAlign" : "flex-start"
-          },
-          "children" : [ {
-            "children" : [ {
-              "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<div class=\"stats-strip\"><div><strong>2 min</strong><span>Avg. first reply</span></div><div><strong>24/7</strong><span>Live support</span></div><div><strong>4.9★</strong><span>Support rating</span></div></div><div class=\"customer-card-section\"><h2 class=\"customer-card-section__title\">How can we help you today?</h2><p class=\"customer-card-section__subtitle\">Select a category to explore resources and solutions.</p><div class=\"customer-cards\"><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/track.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Track Your Order</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/refund.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Refund Requests</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/chat.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">24/7 Support</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/alert.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Delivery Issues</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/account.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Account Settings</h3></div></div></div>"
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<div class=\"stats-strip\"><div><strong>2 min</strong><span>Avg. first reply</span></div><div><strong>24/7</strong><span>Live support</span></div><div><strong>4.9★</strong><span>Support rating</span></div></div><div class=\"customer-card-section\"><h2 class=\"customer-card-section__title\">How can we help you today?</h2><p class=\"customer-card-section__subtitle\">Select a category to explore resources and solutions.</p><div class=\"customer-cards\"><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/track.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Track Your Order</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/refund.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Refund Requests</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/chat.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">24/7 Support</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/alert.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Delivery Issues</h3></div><div class=\"customer-card\"><div class=\"customer-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/account.svg\" alt=\"\"></div><h3 class=\"customer-card__title\">Account Settings</h3></div></div></div>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "e7e1fe77-2e28-49b7-8534-9b3e61bfae51",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<div class=\"support-section\" id=\"support\"><h2 class=\"support-section__title\">Need assistance?</h2><p class=\"support-section__subtitle\">We're here to help. Choose the support option that works best for you.</p><div class=\"support-grid\"><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/customer-chat.svg\" alt=\"\"></div><div class=\"support-card__header\">Live Chat</div><div class=\"support-card__body\">Chat with our team for real-time help with orders and account questions.</div><div class=\"support-card__footer\"><a href=\"#\">Start chat</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/customer-phone.svg\" alt=\"\"></div><div class=\"support-card__header\">Phone Support</div><div class=\"support-card__body\">Talk to a support specialist about any complex issue or inquiry.</div><div class=\"support-card__footer\"><a href=\"#\">Call us</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/customer-mail.svg\" alt=\"\"></div><div class=\"support-card__header\">Email Support</div><div class=\"support-card__body\">Send us your questions and we'll reply as soon as possible.</div><div class=\"support-card__footer\"><a href=\"#\">Email us</a></div></div></div></div>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "96c44731-3f04-4f2f-bc97-0b9bdaa95ccb",
+                      "type": "component"
+                    },
+                    {
+                      "attributes": {
+                        "dxpStyle": {},
+                        "imageInfos": "",
+                        "richTextValue": "<p style=\"text-align:center\">Restaurant or courier partner? <a href=\"/merchants/\">Report a problem tonight →</a></p>"
+                      },
+                      "definition": "community_builder:htmlEditor",
+                      "id": "177bf2c6-3575-46bc-9a82-23d061f8de78",
+                      "type": "component"
+                    }
+                  ],
+                  "id": "042ebe69-cc5c-4d7b-b16c-f8af0bfd99a4",
+                  "name": "col1",
+                  "title": "Column 1",
+                  "type": "region"
+                }
+              ],
+              "definition": "community_layout:section",
+              "id": "5fa87945-bc76-4df2-a9ed-ec6164b3270d",
+              "type": "component"
+            }
+          ],
+          "id": "5312693a-89be-400c-8a8c-b5d3611aa5ab",
+          "name": "content",
+          "title": "Content",
+          "type": "region"
+        },
+        {
+          "children": [
+            {
+              "attributes": {
+                "customHeadTags": "",
+                "description": "",
+                "dxpStyle": {},
+                "pageTitle": "Home",
+                "recordId": "{!recordId}"
               },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "e7e1fe77-2e28-49b7-8534-9b3e61bfae51",
-              "type" : "component"
-            }, {
-              "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<div class=\"support-section\" id=\"support\"><h2 class=\"support-section__title\">Need assistance?</h2><p class=\"support-section__subtitle\">We're here to help. Choose the support option that works best for you.</p><div class=\"support-grid\"><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/customer-chat.svg\" alt=\"\"></div><div class=\"support-card__header\">Live Chat</div><div class=\"support-card__body\">Chat with our team for real-time help with orders and account questions.</div><div class=\"support-card__footer\"><a href=\"#\">Start chat</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/customer-phone.svg\" alt=\"\"></div><div class=\"support-card__header\">Phone Support</div><div class=\"support-card__body\">Talk to a support specialist about any complex issue or inquiry.</div><div class=\"support-card__footer\"><a href=\"#\">Call us</a></div></div><div class=\"support-card\"><div class=\"support-card__icon\"><img src=\"/sfsites/c/resource/pronto_support_redesign/icons/customer-mail.svg\" alt=\"\"></div><div class=\"support-card__header\">Email Support</div><div class=\"support-card__body\">Send us your questions and we'll reply as soon as possible.</div><div class=\"support-card__footer\"><a href=\"#\">Email us</a></div></div></div></div>"
-              },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "96c44731-3f04-4f2f-bc97-0b9bdaa95ccb",
-              "type" : "component"
-            } ],
-            "id" : "042ebe69-cc5c-4d7b-b16c-f8af0bfd99a4",
-            "name" : "col1",
-            "title" : "Column 1",
-            "type" : "region"
-          } ],
-          "definition" : "community_layout:section",
-          "id" : "5fa87945-bc76-4df2-a9ed-ec6164b3270d",
-          "type" : "component"
-        } ],
-        "id" : "5312693a-89be-400c-8a8c-b5d3611aa5ab",
-        "name" : "content",
-        "title" : "Content",
-        "type" : "region"
-      }, {
-        "children" : [ {
-          "attributes" : {
-            "customHeadTags" : "",
-            "description" : "",
-            "dxpStyle" : { },
-            "pageTitle" : "Home",
-            "recordId" : "{!recordId}"
-          },
-          "definition" : "community_builder:seoAssistant",
-          "id" : "6e5c5816-7b73-439b-aa6b-a7a8dda602c0",
-          "type" : "component"
-        } ],
-        "id" : "ebae9b6c-2b6f-4314-8efe-78adbb2f8973",
-        "name" : "sfdcHiddenRegion",
-        "title" : "sfdcHiddenRegion",
-        "type" : "region"
-      } ],
-      "definition" : "community_layout:sldsFlexibleLayout",
-      "id" : "d8c5a91f-e6fa-4f33-99ce-806dc0b935c9",
-      "type" : "component"
+              "definition": "community_builder:seoAssistant",
+              "id": "6e5c5816-7b73-439b-aa6b-a7a8dda602c0",
+              "type": "component"
+            }
+          ],
+          "id": "ebae9b6c-2b6f-4314-8efe-78adbb2f8973",
+          "name": "sfdcHiddenRegion",
+          "title": "sfdcHiddenRegion",
+          "type": "region"
+        }
+      ],
+      "definition": "community_layout:sldsFlexibleLayout",
+      "id": "d8c5a91f-e6fa-4f33-99ce-806dc0b935c9",
+      "type": "component"
     },
-    "dataProviders" : [ ],
-    "themeLayoutType" : "Inner",
-    "viewType" : "home"
+    "dataProviders": [],
+    "themeLayoutType": "Inner",
+    "viewType": "home"
   },
-  "urlName" : "home"
+  "urlName": "home"
 }

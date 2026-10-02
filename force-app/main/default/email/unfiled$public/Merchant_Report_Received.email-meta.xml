@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Confirmation sent to restaurants/couriers when their Merchant Report case is created (auto-response rule).</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Merchant Report Received</name>
+    <style>none</style>
+    <subject>Pronto received your report: {!Case.Subject} (Ref {!Case.CaseNumber})</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

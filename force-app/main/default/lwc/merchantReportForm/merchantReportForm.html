@@ -1,0 +1,25 @@
+<template>
+    <section class="card">
+        <template lwc:if={caseNumber}>
+            <h2 class="title ok">Report sent</h2>
+            <p class="lede">Pronto Merchant Ops has it — reference <strong>{caseNumber}</strong>. If customers report the same problem, our support assistant will already know.</p>
+            <lightning-button variant="base" label="Send another report" onclick={handleReset}></lightning-button>
+        </template>
+        <template lwc:else>
+            <h2 class="title">Report a problem tonight</h2>
+            <p class="lede">Out of an item, kitchen running behind, or a pickup gone wrong? Tell Pronto before customers notice — it goes straight to Merchant Ops.</p>
+            <lightning-input type="email" label="Your email" value={email} onchange={handleEmail} required placeholder="you@restaurant.com"></lightning-input>
+            <lightning-combobox label="Storefront" value={storefront} options={storefrontOptions} onchange={handleStorefront} placeholder="Choose your location…" required></lightning-combobox>
+            <div class="chips">
+                <template for:each={quickStarts} for:item="chip">
+                    <button key={chip.label} type="button" class="chip" data-text={chip.text} onclick={handleChip}>{chip.label}</button>
+                </template>
+            </div>
+            <lightning-textarea label="What's happening?" value={message} onchange={handleMessage} required placeholder="e.g. Out of fries tonight, orders will go out without them"></lightning-textarea>
+            <template lwc:if={error}>
+                <p class="error" role="alert">{error}</p>
+            </template>
+            <lightning-button class="submit" variant="brand" label={submitLabel} onclick={handleSubmit} disabled={submitting}></lightning-button>
+        </template>
+    </section>
+</template>

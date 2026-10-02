@@ -1,0 +1,10 @@
+Hi,
+
+Thanks for letting Pronto know. Merchant Ops has your report and is on it.
+
+Reference: {!Case.CaseNumber}
+Report: {!Case.Subject}
+
+If customers contact us about the same problem, our support assistant will already know, so they won't have to send proof.
+
+Pronto Merchant Ops
