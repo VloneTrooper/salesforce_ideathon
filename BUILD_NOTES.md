@@ -9,10 +9,10 @@ picking this up: read `CLAUDE.md`, then this file, then continue from **Next up*
 |---|---|---|
 | 0 Data model | ✅ Deployed | — |
 | 1 Merchant & Courier channel | 🟡 Email channel built; ✅ **web form** built + tested | Email: verify routing address + Gmail forwarding. Form: open it in a browser once and submit |
-| 2 Agent failure handling | 🟡 Built, tested in live preview, published as **v2 (inactive)** | Valen activates v2; confirm bell + email for Case 00001041 |
+| 2 Agent failure handling | 🟡 Published as **v3 (inactive)** — v3 = v2 minus the photo prompt | Valen activates **v3** |
 | Ex. 3 Verification + refunds | 🟡 Built, tested in live preview (in v2) | Activate v2 |
 | 3 Report & dashboard | 🟡 Built (4 reports + dashboard), sample data seeded | Check filters in the UI; approve insight sentence; export .xlsx + PDF |
-| 4 Photo evidence | 🟡 Agent prompt done (in v2); attachment toggle not found in metadata | Valen/Ethan: find + enable the attachment setting in Setup, republish, test from live site |
+| 4 Photo evidence | ❌ Dropped — org lacks the file-attachment permission (verified by Valen). Agent v3 no longer mentions photos. Put it on the "next steps" slide | — |
 | 5 Bonus merchant-aware agent | 🟡 Built early, tested in live preview (in v2) | Rehearse email → chat sequence |
 
 **Next up:** Human checks (see each phase). Then Phase 6: deliverables + rehearsal using the **Demo runbook** at the bottom.
@@ -203,7 +203,7 @@ Delete all with: `delete [SELECT Id FROM Case WHERE Description LIKE '[Sample da
 
 ---
 
-## Phase 4 — Photo evidence in chat 🟡 partial
+## Phase 4 — Photo evidence in chat ❌ dropped (no org permission) — next-steps slide; agent v3 asks for a description instead
 
 - ✅ Agent v2 invites the customer to attach a photo with the paperclip when there's no merchant report, and is
   told never to claim it can see photos.
