@@ -5,7 +5,7 @@
     <encodingKey>UTF-8</encodingKey>
     <name>Merchant Report Received</name>
     <style>none</style>
-    <subject>Pronto received your report: {!Case.Subject} (Ref {!Case.CaseNumber})</subject>
+    <subject>Ref {!Case.CaseNumber}: Pronto received your report ({!Case.Subject})</subject>
     <type>text</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

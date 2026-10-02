@@ -347,3 +347,19 @@ in the repo are **partial** profiles (only the app/tab/class settings) — deplo
 - **No alert email for live failures:** cases from live chat are created by the agent user (noreply@example.com), which
   Gmail drops. `Agent_Failure_Alert_Notification` email now uses senderType **DefaultWorkflowUser**. Tested (Case 00001123).
 - Cleanup later: Cases 00001121, 00001123 (tests).
+
+### Oct 2 (~1:45am) — email deliverability, closing cases, chat reply
+- **Emails:** Salesforce shows them Sent, but Gmail filters/drops them because they claim to be from a @gmail.com
+  address (v413nc) while coming from Salesforce servers. No Salesforce-owned sender is possible here (the Email-to-Case
+  service address is 118 chars; Salesforce email fields max 80). Mitigations: case number now leads every subject
+  ("Case 000xxxx: Agent failure, …" / "Ref 000xxxx: Pronto received your report (…)") so Gmail doesn't thread new alerts into old
+  spam conversations; Gmail filters (see below). **The bell notification is the reliable alert — demo that.**
+- **Merchant site confirmations:** Salesforce skips auto-response rules for site guests, so new flow
+  `Merchant_Site_Report_Confirmation` (after-save, Merchant Report created by a Guest with SuppliedEmail) emails the same
+  confirmation (sender = default workflow user).
+- **Closing cases:** Support setting `closeCaseThroughStatusChange` turned on → "Closed" now appears in Case Status.
+- **Replying to an accepted chat:** the Messaging Session page needs the **Enhanced Conversation** component. Its metadata
+  name isn't documented (6 guesses rejected), so it must be added in Lightning App Builder (see Valen's steps). After it's
+  saved, retrieve it with `sf project retrieve start -m FlexiPage` to keep it in git.
+- **Gmail filter (Valen and Ethan):** Gmail → search box → "Show search options" → From: `v413nc@gmail.com`, Has the words:
+  `"Agent failure" OR "Pronto received your report"` → Create filter → ✅ Never send it to Spam → Create filter.

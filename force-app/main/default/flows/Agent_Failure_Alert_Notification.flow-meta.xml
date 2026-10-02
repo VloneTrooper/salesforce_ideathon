@@ -104,7 +104,7 @@
     <formulas>
         <name>notifTitle</name>
         <dataType>String</dataType>
-        <expression>&quot;Agent failure: &quot; &amp; TEXT({!$Record.Failure_Type__c}) &amp; &quot; (&quot; &amp; TEXT({!$Record.Priority}) &amp; &quot;)&quot;</expression>
+        <expression>&quot;Case &quot; &amp; {!$Record.CaseNumber} &amp; &quot;: Agent failure, &quot; &amp; TEXT({!$Record.Failure_Type__c}) &amp; &quot; (&quot; &amp; TEXT({!$Record.Priority}) &amp; &quot;)&quot;</expression>
     </formulas>
     <formulas>
         <name>notifBody</name>

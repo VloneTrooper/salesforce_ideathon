@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Confirmation</name>
+        <label>Send Confirmation</label>
+        <locationX>50</locationX>
+        <locationY>200</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.SuppliedEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>confirmationSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>confirmationBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>DefaultWorkflowUser</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>67.0</apiVersion>
+    <description>Sends the merchant a confirmation with the case number when a Merchant Report is created from the merchant site form (site guest user). Email-to-Case and Web-to-Case reports get the same message from the Pronto Merchant Reports auto-response rule, which Salesforce does not run for site guests.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>confirmationSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Ref &quot; &amp; {!$Record.CaseNumber} &amp; &quot;: Pronto received your report (&quot; &amp; {!$Record.Subject} &amp; &quot;)&quot;</expression>
+    </formulas>
+    <label>Merchant Site Report Confirmation</label>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Send_Confirmation</targetReference>
+        </connector>
+        <filterFormula>AND(TEXT({!$Record.Origin}) = &quot;Merchant Report&quot;, NOT(ISBLANK({!$Record.SuppliedEmail})), ISPICKVAL({!$Record.CreatedBy.UserType}, &quot;Guest&quot;))</filterFormula>
+        <object>Case</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>confirmationBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hi,
+
+Thanks for letting Pronto know. Merchant Ops has your report and is on it.
+
+Reference: {!$Record.CaseNumber}
+Storefront: {!$Record.Reported_Storefront__c}
+Report: {!$Record.Subject}
+
+If customers contact us about the same problem, our support assistant will already know, so they won&apos;t have to send proof.
+
+Pronto Merchant Ops</text>
+    </textTemplates>
+</Flow>
