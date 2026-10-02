@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Shows matching storefronts as swipeable cards (custom Lightning type) and returns the one the user selects.</description>
+    <developerName>Select_Storefront</developerName>
+    <invocationTarget>StorefrontPickerAction</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Select_Storefront</localDeveloperName>
+    <masterLabel>Select Storefront</masterLabel>
+</GenAiFunction>

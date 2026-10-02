@@ -1,0 +1,98 @@
+{
+  "type" : "sfdc_cms__themeLayout",
+  "title" : "Scoped Header and Footer",
+  "contentBody" : {
+    "component" : {
+      "attributes" : {
+        "hideThemeFooter" : false,
+        "showThemeFooterAtBottom" : true,
+        "stickyThemeHeader" : false
+      },
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "0rem",
+            "sectionConfig" : "{\"UUID\":\"56e6309d-4203-4932-a6d7-68ea6c32beba\",\"columns\":[{\"UUID\":\"42fb1a69-e0c8-4632-aa58-7b7f0a269246\",\"columnName\":\"Column 1\",\"columnKey\":\"headerSection\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "dxpStyle" : { },
+                "imageInfos" : "",
+                "richTextValue" : "<header class=\"site-header site-header--merchant\"><a class=\"site-header__brand\" href=\"/home\"><img src=\"/sfsites/c/resource/pronto_support_redesign/pronto-green.png\" alt=\"Pronto\"><span class=\"site-header__tag\">Merchant</span></a><nav class=\"site-header__nav\"><a href=\"#support\">Help Center</a><a href=\"#knowledge\">Knowledge</a><a href=\"#support\">Contact</a></nav><a class=\"site-header__cta\" href=\"/dashboard\">Merchant Dashboard</a></header>"
+              },
+              "definition" : "community_builder:htmlEditor",
+              "id" : "5bd1e22c-3037-4913-9dc3-d5870d38a253",
+              "type" : "component"
+            } ],
+            "id" : "42fb1a69-e0c8-4632-aa58-7b7f0a269246",
+            "name" : "headerSection",
+            "title" : "Theme Header",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "56e6309d-4203-4932-a6d7-68ea6c32beba",
+          "type" : "component"
+        } ],
+        "id" : "5bbaa7e5-10f8-44c2-8306-05fb285e0398",
+        "name" : "header",
+        "title" : "Theme Header",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"eb764aef-1822-483c-8860-ea6b4810c9ec\",\"columns\":[{\"UUID\":\"7e81ef13-3618-4e05-8603-ef801a3a6341\",\"columnName\":\"Column 1\",\"columnKey\":\"footerSection\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "dxpStyle" : { },
+                "imageInfos" : "",
+                "richTextValue" : "<footer class=\"site-footer\"><div class=\"site-footer__grid\"><div><img src=\"/sfsites/c/resource/pronto_support_redesign/pronto-green.png\" alt=\"Pronto\"><p>Support built for restaurant partners moving fast.</p></div><div><h4>About Pronto</h4><a href=\"#\">Our Story</a><a href=\"#\">Join Our Team</a><a href=\"#\">Insights &amp; Updates</a><a href=\"#\">Media Center</a><a href=\"#\">Environmental Goals</a></div><div><h4>Support</h4><a href=\"#\">Knowledge Articles</a><a href=\"#support\">Live Chat</a><a href=\"#support\">Phone Support</a><a href=\"#support\">Email Support</a></div><div><h4>Partner With Us</h4><a href=\"#\">Restaurant Sign-Up</a><a href=\"#\">Driver Opportunities</a><a href=\"#\">Technology Partners</a></div></div><div class=\"site-footer__bottom\">&copy; 2026 Pronto Delivery Co. Merchant Support</div></footer>"
+              },
+              "definition" : "community_builder:htmlEditor",
+              "id" : "d038d6fb-cd20-49d9-9a39-45a0b8a1dacb",
+              "type" : "component"
+            } ],
+            "id" : "7e81ef13-3618-4e05-8603-ef801a3a6341",
+            "name" : "footerSection",
+            "title" : "Theme Footer",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "eb764aef-1822-483c-8860-ea6b4810c9ec",
+          "type" : "component"
+        } ],
+        "id" : "26bb6e10-f6f3-46e4-9007-bfbca0ad4d95",
+        "name" : "footer",
+        "title" : "Theme Footer",
+        "type" : "region"
+      } ],
+      "definition" : "community_byo:scopedHeaderAndFooter",
+      "id" : "ddebc553-360f-41cc-940d-847ed802f65f",
+      "type" : "component"
+    }
+  },
+  "urlName" : "scoped-header-and-footer"
+}

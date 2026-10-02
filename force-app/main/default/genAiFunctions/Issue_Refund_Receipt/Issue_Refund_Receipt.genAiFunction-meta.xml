@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates an approved refund and returns a rich refund receipt rendered with a custom Lightning type.</description>
+    <developerName>Issue_Refund_Receipt</developerName>
+    <invocationTarget>IssueRefundReceiptAction</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Issue_Refund_Receipt</localDeveloperName>
+    <masterLabel>Issue Refund Receipt</masterLabel>
+</GenAiFunction>

@@ -1,0 +1,14 @@
+{
+  "required" : [ "selectedOrder" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "selectedOrder" : {
+      "title" : "Selected Order",
+      "description" : "The order the customer selects from the Recent Order Picker cards.",
+      "lightning:type" : "c__orderSelection",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,56 @@
+{
+  "required" : [ "giftType", "giftValue", "verifiedCustomerId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "businessAccountId" : {
+      "title" : "Business Account Id",
+      "description" : "Optional merchant/business account (Gift_Certificate__c.Business_Account__c).",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "caseId" : {
+      "title" : "Case Id",
+      "description" : "Optional Case Id to associate with the gift certificate (Gift_Certificate__c.Issued_For_Case__c).",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "giftType" : {
+      "title" : "Gift Type",
+      "description" : "Gift_Certificate__c.Type__c picklist value (for example: Promotion, Recovery, Purchased).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "giftValue" : {
+      "title" : "Gift Value",
+      "description" : "The gift certificate monetary value (Gift_Certificate__c.Value__c / Original_Value__c / Remaining_Value__c).",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "sourceChannel" : {
+      "title" : "Source Channel",
+      "description" : "Gift_Certificate__c.Source_Channel__c value (for example: Agentforce).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "storefrontId" : {
+      "title" : "Storefront Id",
+      "description" : "Optional storefront/restaurant (Gift_Certificate__c.Storefront__c).",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "verifiedCustomerId" : {
+      "title" : "Verified Customer Id",
+      "description" : "The Contact Id for the verified customer that will be set as Gift_Certificate__c.Recipient__c.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

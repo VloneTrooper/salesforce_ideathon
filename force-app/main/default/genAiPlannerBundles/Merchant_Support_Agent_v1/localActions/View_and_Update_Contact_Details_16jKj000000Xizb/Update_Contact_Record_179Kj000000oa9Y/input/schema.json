@@ -1,0 +1,64 @@
+{
+  "required" : [ "verifiedCustomerId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "email" : {
+      "title" : "Email",
+      "description" : "Updated email address for the contact. Leave blank if the email address should not be changed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : true,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingCity" : {
+      "title" : "Mailing City",
+      "description" : "New mailing city value. Leave blank if the city should not be changed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingCountry" : {
+      "title" : "Mailing Country",
+      "description" : "New mailing country value. Leave blank if the country should not be changed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingPostalCode" : {
+      "title" : "Mailing Postal Code",
+      "description" : "New mailing postal/zip code value. Leave blank if the postal code should not be changed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingState" : {
+      "title" : "Mailing State",
+      "description" : "New mailing state/province value. Leave blank if the state should not be changed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingStreet" : {
+      "title" : "Mailing Street",
+      "description" : "New mailing street value. Leave blank if the street should not be changed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "phone" : {
+      "title" : "Phone",
+      "description" : "Updated phone number for the contact. Leave blank if the phone number should not be changed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : true,
+      "copilotAction:isUserInput" : true
+    },
+    "verifiedCustomerId" : {
+      "title" : "Verified Customer Id",
+      "description" : "The Contact Id for the verified customer whose profile and mailing address should be updated.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Renders an existing gift certificate as a rich gift card voucher without issuing a new credit.</description>
+    <developerName>Render_Gift_Card</developerName>
+    <invocationTarget>RenderGiftCardAction</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Render_Gift_Card</localDeveloperName>
+    <masterLabel>Render Gift Card</masterLabel>
+</GenAiFunction>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Automate common business tasks and assist users in their flow of work. Agentforce Employee Agent can search knowledge articles and other data sources. Customize it further to meet your employees&apos; business needs.</description>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jKj000000L5MZ</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Gift_Card_Management_16jKj000000L5MZ</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>menu_management_16jKj000000L5MZ</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jKj000000L5MZ</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>promotion_management_16jKj000000L5MZ</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>topic_selector_16jKj000000L5MZ</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>menu_management_16jKj000000L5MZ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic allows users to view and edit menus for storefronts.</description>
+        <developerName>menu_management_16jKj000000L5MZ</developerName>
+        <genAiPluginInstructions>
+            <description>You are a merchant management assistant that helps employees manage storefronts and their operations. You work with restaurant and retail accounts across the Pronto platform.
+
+Always identify the correct account and storefront before taking any action. When a user mentions a merchant by name, confirm the storefront if the account has multiple locations.
+
+When presenting records you have created or retrieved, use the record&apos;s display name rather than auto-generated system names.
+
+Always route menu-related questions — including viewing, creating, updating, or asking about specific menus and their items — to the menu_management topic. Never use user_select_record for menu-related queries.
+
+Be concise and action-oriented. Confirm what you did after completing an action, and surface any errors clearly so the user can correct their request.</description>
+            <developerName>instruction0_179Kj000000oape</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Kj000000oape</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Menu_Items_179Kj000000oape</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Create_Menu_with_Items_179Kj000000oape</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Update_Menu_179Kj000000oape</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Update_Menu_Item_179Kj000000oape</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Get_Active_Menus_179Kj000000oape</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>QueryRecords_179Kj000000oape</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Update_Menu_Item_Price_179Kj000000oape</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>QueryRecords_179Kj000000oape</fullName>
+            <description>Finds and retrieves Salesforce CRM records based on user input and specific conditions, such as field values. This action automatically identifies the correct records and object type. e.g. &apos;Find all open opportunities created in the last 5 days sorted by created date.&apos;</description>
+            <developerName>QueryRecords_179Kj000000oape</developerName>
+            <invocationTarget>queryRecords</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>QueryRecords</localDeveloperName>
+            <masterLabel>Query Records</masterLabel>
+            <source>EmployeeCopilot__QueryRecords</source>
+        </localActions>
+        <localActions>
+            <fullName>Update_Menu_179Kj000000oape</fullName>
+            <description>Update a menu record.</description>
+            <developerName>Update_Menu_179Kj000000oape</developerName>
+            <invocationTarget>AgentUpdateMenuActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Update_Menu</localDeveloperName>
+            <masterLabel>Update Menu</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Update_Menu_Item_Price_179Kj000000oape</fullName>
+            <description>Updates the Price__c field on a menu item. Respects field-level security and fails gracefully if access is denied.</description>
+            <developerName>Update_Menu_Item_Price_179Kj000000oape</developerName>
+            <invocationTarget>AgentUpdateMenuItemPriceActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>true</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Update_Menu_Item_Price</localDeveloperName>
+            <masterLabel>Update Menu Item Price</masterLabel>
+            <source>Update_Menu_Item_Price</source>
+        </localActions>
+        <localActions>
+            <fullName>Update_Menu_Item_179Kj000000oape</fullName>
+            <description>Updates descriptive menu item fields such as description, availability, calories, and image URL. Does NOT update price.</description>
+            <developerName>Update_Menu_Item_179Kj000000oape</developerName>
+            <invocationTarget>AgentUpdateMenuItemActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>true</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Update_Menu_Item</localDeveloperName>
+            <masterLabel>Update Menu Item</masterLabel>
+            <source>Update_Menu_Item</source>
+        </localActions>
+        <localActions>
+            <fullName>Get_Menu_Items_179Kj000000oape</fullName>
+            <description>Retrieves menu items for a selected menu or all items for a storefront.</description>
+            <developerName>Get_Menu_Items_179Kj000000oape</developerName>
+            <invocationTarget>AgentGetMenuItemsActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Menu_Items</localDeveloperName>
+            <masterLabel>Get Menu Items</masterLabel>
+            <source>Get_Menu_Items</source>
+        </localActions>
+        <localActions>
+            <fullName>Create_Menu_with_Items_179Kj000000oape</fullName>
+            <description>Create a menu with menu items and categories.</description>
+            <developerName>Create_Menu_with_Items_179Kj000000oape</developerName>
+            <invocationTarget>AgentCreateMenuWithItemsActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Menu_with_Items</localDeveloperName>
+            <masterLabel>Create Menu with Items</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Get_Active_Menus_179Kj000000oape</fullName>
+            <description>Get a list of active menus for a storefront.</description>
+            <developerName>Get_Active_Menus_179Kj000000oape</developerName>
+            <invocationTarget>AgentGetActiveMenusActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Active_Menus</localDeveloperName>
+            <masterLabel>Get Active Menus</masterLabel>
+        </localActions>
+        <localDeveloperName>menu_management</localDeveloperName>
+        <masterLabel>Menu Management</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>off_topic_16jKj000000L5MZ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request goes off-topic</description>
+        <developerName>off_topic_16jKj000000L5MZ</developerName>
+        <genAiPluginInstructions>
+            <description>You are a merchant management assistant that helps employees manage storefronts and their operations. You work with restaurant and retail accounts across the Pronto platform.
+
+Always identify the correct account and storefront before taking any action. When a user mentions a merchant by name, confirm the storefront if the account has multiple locations.
+
+When presenting records you have created or retrieved, use the record&apos;s display name rather than auto-generated system names.
+
+Always route menu-related questions — including viewing, creating, updating, or asking about specific menus and their items — to the menu_management topic. Never use user_select_record for menu-related queries.
+
+Be concise and action-oriented. Confirm what you did after completing an action, and surface any errors clearly so the user can correct their request.</description>
+            <developerName>instruction0_179Kj000000oaph</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Kj000000oaph</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>topic_selector_16jKj000000L5MZ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate topic based on user input</description>
+        <developerName>topic_selector_16jKj000000L5MZ</developerName>
+        <genAiPluginInstructions>
+            <description>You are a merchant management assistant that helps employees manage storefronts and their operations. You work with restaurant and retail accounts across the Pronto platform.
+
+Always identify the correct account and storefront before taking any action. When a user mentions a merchant by name, confirm the storefront if the account has multiple locations.
+
+When presenting records you have created or retrieved, use the record&apos;s display name rather than auto-generated system names.
+
+Always route menu-related questions — including viewing, creating, updating, or asking about specific menus and their items — to the menu_management topic. Never use user_select_record for menu-related queries.
+
+Be concise and action-oriented. Confirm what you did after completing an action, and surface any errors clearly so the user can correct their request.</description>
+            <developerName>instruction0_179Kj000000oapg</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Kj000000oapg</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>topic_selector</localDeveloperName>
+        <masterLabel>Topic Selector</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>GeneralFAQ_16jKj000000L5MZ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic is for helping answer customer&apos;s questions by searching through the knowledge articles and providing information from those articles. The questions can be about the company and its products, policies or business procedures</description>
+        <developerName>GeneralFAQ_16jKj000000L5MZ</developerName>
+        <genAiPluginInstructions>
+            <description>You are a merchant management assistant that helps employees manage storefronts and their operations. You work with restaurant and retail accounts across the Pronto platform.
+
+Always identify the correct account and storefront before taking any action. When a user mentions a merchant by name, confirm the storefront if the account has multiple locations.
+
+When presenting records you have created or retrieved, use the record&apos;s display name rather than auto-generated system names.
+
+Always route menu-related questions — including viewing, creating, updating, or asking about specific menus and their items — to the menu_management topic. Never use user_select_record for menu-related queries.
+
+Be concise and action-oriented. Confirm what you did after completing an action, and surface any errors clearly so the user can correct their request.</description>
+            <developerName>instruction0_179Kj000000oapf</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Kj000000oapf</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Gift_Card_Management_16jKj000000L5MZ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Manage Gift Certificate on behalf of a storefront</description>
+        <developerName>Gift_Card_Management_16jKj000000L5MZ</developerName>
+        <genAiPluginInstructions>
+            <description>You are a merchant management assistant that helps employees manage storefronts and their operations. You work with restaurant and retail accounts across the Pronto platform.
+
+Always identify the correct account and storefront before taking any action. When a user mentions a merchant by name, confirm the storefront if the account has multiple locations.
+
+When presenting records you have created or retrieved, use the record&apos;s display name rather than auto-generated system names.
+
+Always route menu-related questions — including viewing, creating, updating, or asking about specific menus and their items — to the menu_management topic. Never use user_select_record for menu-related queries.
+
+Be concise and action-oriented. Confirm what you did after completing an action, and surface any errors clearly so the user can correct their request.</description>
+            <developerName>instruction0_179Kj000000oapj</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Kj000000oapj</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Create_Gift_Certificate_179Kj000000oapj</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>QueryRecords_179Kj000000oapj</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>QueryRecords_179Kj000000oapj</fullName>
+            <description>Finds and retrieves Salesforce CRM records based on user input and specific conditions, such as field values. This action automatically identifies the correct records and object type. e.g. &apos;Find all open opportunities created in the last 5 days sorted by created date.&apos;</description>
+            <developerName>QueryRecords_179Kj000000oapj</developerName>
+            <invocationTarget>queryRecords</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>QueryRecords</localDeveloperName>
+            <masterLabel>Query Records</masterLabel>
+            <source>EmployeeCopilot__QueryRecords</source>
+        </localActions>
+        <localActions>
+            <fullName>Create_Gift_Certificate_179Kj000000oapj</fullName>
+            <description>Create a new Gift Certificate Record for the designated Storefront.</description>
+            <developerName>Create_Gift_Certificate_179Kj000000oapj</developerName>
+            <invocationTarget>AgentGiftCertificateActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Gift_Certificate</localDeveloperName>
+            <masterLabel>Create Gift Certificate</masterLabel>
+        </localActions>
+        <localDeveloperName>Gift_Card_Management</localDeveloperName>
+        <masterLabel>Gift Certificate Management</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>promotion_management_16jKj000000L5MZ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Manage Promotions on behalf of a storefront.</description>
+        <developerName>promotion_management_16jKj000000L5MZ</developerName>
+        <genAiPluginInstructions>
+            <description>You are a merchant management assistant that helps employees manage storefronts and their operations. You work with restaurant and retail accounts across the Pronto platform.
+
+Always identify the correct account and storefront before taking any action. When a user mentions a merchant by name, confirm the storefront if the account has multiple locations.
+
+When presenting records you have created or retrieved, use the record&apos;s display name rather than auto-generated system names.
+
+Always route menu-related questions — including viewing, creating, updating, or asking about specific menus and their items — to the menu_management topic. Never use user_select_record for menu-related queries.
+
+Be concise and action-oriented. Confirm what you did after completing an action, and surface any errors clearly so the user can correct their request.</description>
+            <developerName>instruction0_179Kj000000oapi</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Kj000000oapi</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Update_Promotion_Status_179Kj000000oapi</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>QueryRecords_179Kj000000oapi</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Create_Promotion_179Kj000000oapi</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>QueryRecords_179Kj000000oapi</fullName>
+            <description>Finds and retrieves Salesforce CRM records based on user input and specific conditions, such as field values. This action automatically identifies the correct records and object type. e.g. &apos;Find all open opportunities created in the last 5 days sorted by created date.&apos;</description>
+            <developerName>QueryRecords_179Kj000000oapi</developerName>
+            <invocationTarget>queryRecords</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>QueryRecords</localDeveloperName>
+            <masterLabel>Query Records</masterLabel>
+            <source>EmployeeCopilot__QueryRecords</source>
+        </localActions>
+        <localActions>
+            <fullName>Create_Promotion_179Kj000000oapi</fullName>
+            <description>Create a new Promotion Record for the designated Storefront.</description>
+            <developerName>Create_Promotion_179Kj000000oapi</developerName>
+            <invocationTarget>AgentCreatePromotionActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Promotion</localDeveloperName>
+            <masterLabel>Create Promotion</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Update_Promotion_Status_179Kj000000oapi</fullName>
+            <description>Update the status of a promotion record</description>
+            <developerName>Update_Promotion_Status_179Kj000000oapi</developerName>
+            <invocationTarget>AgentUpdatePromotionStatusActions</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Update_Promotion_Status</localDeveloperName>
+            <masterLabel>Update Promotion Status</masterLabel>
+        </localActions>
+        <localDeveloperName>promotion_management</localDeveloperName>
+        <masterLabel>Promotion Management</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Merchant Management Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

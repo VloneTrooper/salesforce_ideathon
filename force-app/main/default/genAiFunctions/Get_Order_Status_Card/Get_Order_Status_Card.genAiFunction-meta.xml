@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Looks up an order and returns a rich order status card rendered with a custom Lightning type.</description>
+    <developerName>Get_Order_Status_Card</developerName>
+    <invocationTarget>OrderStatusCardAction</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Order_Status_Card</localDeveloperName>
+    <masterLabel>Get Order Status Card</masterLabel>
+</GenAiFunction>

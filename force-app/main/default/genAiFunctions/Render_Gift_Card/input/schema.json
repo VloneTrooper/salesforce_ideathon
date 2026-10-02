@@ -1,0 +1,20 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "giftNumber" : {
+      "title" : "Gift Number",
+      "description" : "Gift certificate number to render.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "verifiedCustomerId" : {
+      "title" : "Verified Customer Id",
+      "description" : "Verified Contact Id used as a fallback to render the most recent active Agentforce gift card.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

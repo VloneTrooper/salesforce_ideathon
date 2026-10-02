@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Shows the customer their recent orders as selectable cards (custom Lightning type) and returns the chosen order.</description>
+    <developerName>Pick_Recent_Order</developerName>
+    <invocationTarget>OrderPickerAction</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Pick_Recent_Order</localDeveloperName>
+    <masterLabel>Pick Recent Order</masterLabel>
+</GenAiFunction>

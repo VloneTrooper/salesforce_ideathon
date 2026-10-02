@@ -1,0 +1,22 @@
+{
+  "required" : [ ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "verifiedCustomerId" : {
+      "title" : "Current Customer Id",
+      "description" : "The trusted Contact Id for the current customer whose details should be returned.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "customerEmail" : {
+      "title" : "Customer Email",
+      "description" : "The customer email address. Provide this when you don't have the record Id.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : true,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

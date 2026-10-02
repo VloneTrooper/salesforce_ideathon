@@ -1,0 +1,53 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "giftCertificate" : {
+      "title" : "Gift Certificate",
+      "description" : "The created Gift_Certificate__c record. Display this as a clickable record link.",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Gift_Certificate__c"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "giftCertificates" : {
+      "title" : "Gift Certificates",
+      "description" : "A list of gift certificate summaries created by this action.",
+      "maxItems" : 2000,
+      "items" : {
+        "lightning:type" : "@apexClassType/c__AgentGiftCertificateActions$GiftCertificateSummary"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "giftCertificatesJson" : {
+      "title" : "Gift Certificates JSON",
+      "description" : "JSON-serialized version of giftCertificates for clients that prefer JSON parsing.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "message" : {
+      "title" : "Message",
+      "description" : "User-readable status message. On errors, explains what was missing or what failed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "success" : {
+      "title" : "Success",
+      "description" : "True when the action executed successfully. False when inputs are missing/invalid or an unexpected error occurred.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

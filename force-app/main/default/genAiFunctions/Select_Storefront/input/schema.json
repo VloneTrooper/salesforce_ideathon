@@ -1,0 +1,14 @@
+{
+  "required" : [ "selectedStorefront" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "selectedStorefront" : {
+      "title" : "Selected Storefront",
+      "description" : "The storefront the user selects from the Storefront Selector cards.",
+      "lightning:type" : "c__storefrontSelection",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

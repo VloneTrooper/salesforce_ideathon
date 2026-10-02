@@ -1,0 +1,41 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "refundAmount" : {
+      "title" : "Refund Amount",
+      "description" : "Refund amount in dollars.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "refundReason" : {
+      "title" : "Refund Reason",
+      "description" : "Short explanation for the refund.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "caseId" : {
+      "title" : "Case Id",
+      "description" : "Optional Case Id the refund applies to.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "verifiedContactId" : {
+      "title" : "Verified Contact Id",
+      "description" : "Optional verified Contact Id receiving the refund.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "storefrontId" : {
+      "title" : "Storefront Id",
+      "description" : "Optional Storefront Id linked to the refund.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
