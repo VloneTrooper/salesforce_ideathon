@@ -1,0 +1,21 @@
+{
+  "required" : [ "email", "lastName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "email" : {
+      "title" : "Email",
+      "description" : "Email address on the customer's Pronto account.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "lastName" : {
+      "title" : "Last Name",
+      "description" : "Customer's last name.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

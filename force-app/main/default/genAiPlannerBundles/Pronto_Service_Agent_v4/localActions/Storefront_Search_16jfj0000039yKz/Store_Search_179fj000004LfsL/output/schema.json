@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "message" : {
+      "title" : "Message",
+      "description" : "User-readable status message. On errors, explains what was missing or what failed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "storefronts" : {
+      "title" : "Storefronts",
+      "description" : "A list of storefront summaries matching the provided storefrontName.",
+      "maxItems" : 2000,
+      "items" : {
+        "lightning:type" : "@apexClassType/c__AgentStorefrontActions$StorefrontSummary"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "storefrontsJson" : {
+      "title" : "Storefronts JSON",
+      "description" : "JSON-serialized version of storefronts for clients that prefer to parse JSON.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "success" : {
+      "title" : "Success",
+      "description" : "True when the action executed successfully. False when inputs are missing/invalid or an unexpected error occurred.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

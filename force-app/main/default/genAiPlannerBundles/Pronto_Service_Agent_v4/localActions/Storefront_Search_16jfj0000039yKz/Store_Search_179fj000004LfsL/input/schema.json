@@ -1,0 +1,14 @@
+{
+  "required" : [ "storefrontName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "storefrontName" : {
+      "title" : "Storefront Name",
+      "description" : "Full or partial storefront name to search for. Matches Storefront__c.Name using a contains search.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
