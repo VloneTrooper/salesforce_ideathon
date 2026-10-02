@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Account or profile update</fullName>
+        <default>false</default>
+        <label>Account or profile update</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>App, chat, or notifications issue</fullName>
+        <default>false</default>
+        <label>App, chat, or notifications issue</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Can&apos;t update delivery address</fullName>
+        <default>false</default>
+        <label>Can&apos;t update delivery address</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Data or analytics question</fullName>
+        <default>false</default>
+        <label>Data or analytics question</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Driver picked up wrong order</fullName>
+        <default>false</default>
+        <label>Driver picked up wrong order</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Fake or inappropriate review</fullName>
+        <default>false</default>
+        <label>Fake or inappropriate review</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Fraud or policy review</fullName>
+        <default>false</default>
+        <label>Fraud or policy review</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Merchant refund dispute</fullName>
+        <default>false</default>
+        <label>Merchant refund dispute</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Menu or listing issue</fullName>
+        <default>false</default>
+        <label>Menu or listing issue</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Missing items</fullName>
+        <default>true</default>
+        <label>Missing items</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Onboarding or documentation</fullName>
+        <default>false</default>
+        <label>Onboarding or documentation</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Order arrived cold</fullName>
+        <default>false</default>
+        <label>Order arrived cold</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Order delivered to wrong address</fullName>
+        <default>false</default>
+        <label>Order delivered to wrong address</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Order never arrived</fullName>
+        <default>false</default>
+        <label>Order never arrived</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Order running late</fullName>
+        <default>false</default>
+        <label>Order running late</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Payment or charge issue</fullName>
+        <default>false</default>
+        <label>Payment or charge issue</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Payouts or revenue question</fullName>
+        <default>false</default>
+        <label>Payouts or revenue question</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Refund amount question</fullName>
+        <default>false</default>
+        <label>Refund amount question</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Storefront configuration issue</fullName>
+        <default>false</default>
+        <label>Storefront configuration issue</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Wrong items delivered</fullName>
+        <default>false</default>
+        <label>Wrong items delivered</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Out of Stock</fullName>
+        <default>false</default>
+        <label>Out of Stock</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Prep Delay</fullName>
+        <default>false</default>
+        <label>Prep Delay</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Handoff Issue</fullName>
+        <default>false</default>
+        <label>Handoff Issue</label>
+    </standardValue>
+</StandardValueSet>

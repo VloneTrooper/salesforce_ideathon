@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Failure_Type__c</fullName>
+    <description>Why the Pronto Service Agent could not resolve the conversation. Set on cases with Origin = Agent.</description>
+    <label>Failure Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Escalation Failed</fullName><default>false</default><label>Escalation Failed</label></value>
+            <value><fullName>Clarification Loop</fullName><default>false</default><label>Clarification Loop</label></value>
+            <value><fullName>Action Error</fullName><default>false</default><label>Action Error</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Storefront__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Storefront the case is about. Filled from the reporting Contact for merchant reports, or set by the agent / seed data. Used for reporting and the merchant-aware agent check.</description>
+    <label>Storefront</label>
+    <referenceTo>Storefront__c</referenceTo>
+    <relationshipLabel>Cases</relationshipLabel>
+    <relationshipName>Cases</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

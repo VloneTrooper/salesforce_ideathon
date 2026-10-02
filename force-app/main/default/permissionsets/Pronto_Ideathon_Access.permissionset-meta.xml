@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Field access for the Pronto Ideathon build (merchant channel, agent failure handling, reporting). Assigned to the support lead and the Agentforce service agent user.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Pronto Ideathon Access</label>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Failure_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Storefront__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Storefront__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+</PermissionSet>
